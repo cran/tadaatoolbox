@@ -11,6 +11,7 @@
 #' @import pixiedust
 #' @import stats
 #' @importFrom car leveneTest
+#' @family Tadaa-functions
 #' @export
 #' @examples
 #' df <- data.frame(x = runif(100), y = sample(c("A", "B"), 100, TRUE))
@@ -54,7 +55,7 @@ tadaa_t.test <- function(data, response, group, direction = "two.sided",
                              paired = paired, var.equal = var.equal))
 
   # Additions
-  test$d     <- effect_size_t(data = data, response = response, group = group)
+  test$d     <- effect_size_t(data = data, response = response, group = group, na.rm = na.rm)
   if (paired) {
     test$power <- pwr::pwr.t.test(n = n1, d = test$d, alternative = direction, type = "paired")$power
   } else {
@@ -79,6 +80,6 @@ tadaa_t.test <- function(data, response, group, direction = "two.sided",
   if (!(print %in% c("console", "hmtl", "markdown"))) {
     stop("Print method must be 'console', 'html' or, 'markdown'")
   }
-  return(pixiedust::sprinkle_print_method(output, print_method = print))
 
+  return(pixiedust::sprinkle_print_method(output, print_method = print))
 }

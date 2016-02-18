@@ -6,6 +6,7 @@
 #' @param print Print method. Passed to \link[pixiedust]{sprinkle_print_method} as of now.
 #' @return A \code{dust} object, depending on \code{print}.
 #' @export
+#' @family Tadaa-functions
 #' @import stats
 #' @examples
 #' tadaa_aov(stunzahl ~ jahrgang, data = ngo)
@@ -27,5 +28,6 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, print = "co
   if (!(print %in% c("console", "hmtl", "markdown"))) {
     stop("Print method must be 'console', 'html' or, 'markdown'")
   }
-  pixiedust::sprinkle_print_method(output, print_method = print)
+
+  return(pixiedust::sprinkle_print_method(output, print_method = print))
 }

@@ -4,7 +4,7 @@
 \alias{tadaa_int}
 \title{Interaction plots}
 \usage{
-tadaa_int(data, response, group1, group2)
+tadaa_int(data, response, group1, group2, brewer_palette = "Set1")
 }
 \arguments{
 \item{data}{A \code{data.frame}}
@@ -14,6 +14,8 @@ tadaa_int(data, response, group1, group2)
 \item{group1}{First grouping variable}
 
 \item{group2}{Second grouping variable}
+
+\item{brewer_palette}{The name of the \link[RColorBrewer]{RColorBrewer} palette to use, defaults to \code{Set1}}
 }
 \value{
 Invisible: A list with two ggplot2 objects named \code{p1} and \code{p2}.
@@ -25,5 +27,10 @@ variables and a numeric response variable.
 }
 \examples{
 tadaa_int(ngo, stunzahl, jahrgang, geschl)
+}
+\seealso{
+Other Tadaa.functions: \code{\link{tadaa_aov}},
+  \code{\link{tadaa_nom}}, \code{\link{tadaa_ord}},
+  \code{\link{tadaa_t.test}}
 }
 
