@@ -50,9 +50,9 @@ tadaa_likertize <- function(x, classes = 3, method = "quantiles"){
 #' recode(x, recodes = recodes)
 #'}
 generate_recodes <- function(from, to, width = 5){
-  paste(sapply(seq(from, to - width, 2 * width), function(x) {
-    first  <- paste0(x, ":", x + width, "='", x, "-", x + width, "'")
-    second <- paste0(x + width + 1, ":", x + (2 * width), "='", x + width + 1, "-", x + (2 * width), "'")
+  paste(sapply(seq(from, to, 2 * width), function(x) {
+    first  <- paste0(x, ":", (x-1) + width, "='", x, "-", (x-1) + width, "'")
+    second <- paste0(x + width, ":", x + (2 * width) - 1, "='", x + width, "-", x + (2 * width) - 1, "'")
     paste(first, second, sep = "; ", collapse = "; ")
   }), collapse = "; ")
 }
@@ -75,8 +75,8 @@ generate_recodes <- function(from, to, width = 5){
 #' cut(x, breaks = seq(0, 100, 10), labels = labels)
 #'}
 interval_labels <- function(from, to, width = 5){
-  labs <- lapply(seq(from, to - width, 2 * width), function(x) {
-    c(paste0(x, "-", x + width), paste0(x + width + 1, "-",  x + (2 * width)))
-  })
-  return(unlist(labs))
+    labs <- lapply(seq(from, to - width, 2 * width), function(x) {
+        c(paste0(x, "-", x + width - 1), paste0(x + width, "-",  x + (2 * width) - 1))
+    })
+    return(unlist(labs))
 }

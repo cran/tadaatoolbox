@@ -17,10 +17,10 @@ library(ggplot2)
 ggplot(data = ngo, aes(x = jahrgang, y = stunzahl)) +
   stat_summary(fun.data = "mean_ci_t", geom = "errorbar")
 
-## ----tadaa_int-----------------------------------------------------------
+## ----tadaa_int, fig.width=6----------------------------------------------
 library(ggplot2)
 
-tadaa_int(data = ngo, response = stunzahl, group1 = jahrgang, group2 = geschl)
+tadaa_int(data = ngo, response = stunzahl, group1 = jahrgang, group2 = geschl, grid = T, brewer_palette = "Set1")
 
 ## ----data_ngo, eval=FALSE------------------------------------------------
 #  ngo <- ryouready::d.ngo
@@ -30,9 +30,9 @@ tadaa_int(data = ngo, response = stunzahl, group1 = jahrgang, group2 = geschl)
 #  ngo$abschalt <- sjmisc::set_labels(ngo$abschalt, c("Ja", "Nein"))
 #  ngo$jahrgang <- sjmisc::set_labels(ngo$jahrgang, c("11", "12", "13"))
 #  ngo$hausauf  <- sjmisc::set_labels(ngo$hausauf,  c("gar nicht", "weniger als halbe Stunde",
-#                                             "halbe Stunde bis Stunde", "1 bis 2 Stunden",
-#                                             "2 bis 3 Stunden", "3 bis 4 Stunden",
-#                                             "mehr als 4 Stunden"))
+#                                                     "halbe Stunde bis Stunde", "1 bis 2 Stunden",
+#                                                     "2 bis 3 Stunden", "3 bis 4 Stunden",
+#                                                     "mehr als 4 Stunden"))
 #  
 #  ## factors
 #  ngo$geschl   <- factor(ngo$geschl,   labels = c("M\u00e4nnlich", "Weiblich"))

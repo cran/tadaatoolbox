@@ -7,7 +7,7 @@
 #' @param paired If \code{TRUE}, a paired t.test is performed with approproate power calculation.
 #' @param na.rm If \code{TRUE} (default), missing values are dropped.
 #' @inheritParams tadaa_aov
-#' @return A \code{data.frame}, optionally markdown'd
+#' @return A \code{data.frame} by default, otherwise \code{dust} object, depending on \code{print}.
 #' @import pixiedust
 #' @import stats
 #' @importFrom car leveneTest
@@ -48,7 +48,7 @@ tadaa_t.test <- function(data, response, group, direction = "two.sided",
 
   # levene
   levene    <- broom::tidy(car::leveneTest(data[[response]], data[[group]], center = "mean"))
-  var.equal <-  ifelse(levene$p.value[[1]] <= .1, FALSE, TRUE)
+  var.equal <- ifelse(levene$p.value[[1]] <= .1, FALSE, TRUE)
 
   # t.test
   test <- broom::tidy(t.test(x = x, y = y, direction = direction,
@@ -62,23 +62,27 @@ tadaa_t.test <- function(data, response, group, direction = "two.sided",
     test$power <- pwr::pwr.t2n.test(n1 = n1, n2 = n2, d = test$d, alternative = direction)$power
   }
 
-  output <- pixiedust::dust(test)
-  output <- pixiedust::sprinkle_colnames(output,
-                                         statistic = "t", p.value = "p", parameter = "df",
-                                         conf.low = "conf_low", conf.high = "conf_high")
+  if (print == "df") {
+    return(test)
+  } else {
+    output <- pixiedust::dust(test)
+    output <- pixiedust::sprinkle_colnames(output,
+                                           statistic = "t", p.value = "p", parameter = "df",
+                                           conf.low = "conf_low", conf.high = "conf_high")
 
-  if ("estimate" %in% output$body$col_name) {
-    output <- pixiedust::sprinkle_colnames(output, estimate = "Differenz")
+    if ("estimate" %in% output$body$col_name) {
+      output <- pixiedust::sprinkle_colnames(output, estimate = "Differenz")
+    }
+    if ("estimate1" %in% output$body$col_name) {
+      output <- pixiedust::sprinkle_colnames(output, estimate1 = groups[[1]], estimate2 = groups[[2]])
+    }
+
+    output <- pixiedust::sprinkle(output, cols = "p.value", fn = quote(pixiedust::pvalString(value)))
+    output <- pixiedust::sprinkle(output, round = 3)
   }
-  if ("estimate1" %in% output$body$col_name) {
-    output <- pixiedust::sprinkle_colnames(output, estimate1 = groups[[1]], estimate2 = groups[[2]])
-  }
 
-  output <- pixiedust::sprinkle(output, cols = "p.value", fn = quote(pixiedust::pvalString(value)))
-  output <- pixiedust::sprinkle(output, round = 3)
-
-  if (!(print %in% c("console", "hmtl", "markdown"))) {
-    stop("Print method must be 'console', 'html' or, 'markdown'")
+  if (!(print %in% c("df", "console", "html", "markdown"))) {
+    stop("Print method must be 'df', 'console', 'html' or, 'markdown'")
   }
 
   return(pixiedust::sprinkle_print_method(output, print_method = print))

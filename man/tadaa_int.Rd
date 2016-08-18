@@ -4,7 +4,8 @@
 \alias{tadaa_int}
 \title{Interaction plots}
 \usage{
-tadaa_int(data, response, group1, group2, brewer_palette = "Set1")
+tadaa_int(data, response, group1, group2, grid = FALSE,
+  brewer_palette = "Set1", labels = c("A", "B"))
 }
 \arguments{
 \item{data}{A \code{data.frame}}
@@ -15,11 +16,15 @@ tadaa_int(data, response, group1, group2, brewer_palette = "Set1")
 
 \item{group2}{Second grouping variable}
 
+\item{grid}{If \code{TRUE}, the resulting graphs will be arranged in a grid via \link[cowplot]{plot_grid}.}
+
 \item{brewer_palette}{The name of the \link[RColorBrewer]{RColorBrewer} palette to use, defaults to \code{Set1}}
+
+\item{labels}{Labels used for the plots when printed in a grid (\code{grid = TRUE}), defaults to \code{c("A", "B")}}
 }
 \value{
 Invisible: A list with two ggplot2 objects named \code{p1} and \code{p2}.
-Printed: The two ggplot2 objects.
+Printed: The one or two ggplot2 objects, depending on \code{grid}.
 }
 \description{
 Easily generate interaction plots of two nominal grouping
@@ -27,10 +32,14 @@ variables and a numeric response variable.
 }
 \examples{
 tadaa_int(ngo, stunzahl, jahrgang, geschl)
+
+# As grid
+tadaa_int(ngo, stunzahl, jahrgang, geschl, grid = TRUE)
 }
 \seealso{
 Other Tadaa.functions: \code{\link{tadaa_aov}},
-  \code{\link{tadaa_nom}}, \code{\link{tadaa_ord}},
+  \code{\link{tadaa_heatmap}}, \code{\link{tadaa_nom}},
+  \code{\link{tadaa_normtest}}, \code{\link{tadaa_ord}},
   \code{\link{tadaa_t.test}}
 }
 
