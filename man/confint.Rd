@@ -2,19 +2,22 @@
 % Please edit documentation in R/confint.R
 \name{confint_t}
 \alias{confint_t}
+\alias{confint_norm}
 \title{Confidence Intervals}
 \usage{
-confint_t(data, alpha = 0.05, na.rm = TRUE)
+confint_t(x, alpha = 0.05, na.rm = TRUE)
+
+confint_norm(x, alpha = 0.05, na.rm = TRUE)
 }
 \arguments{
-\item{data}{A \code{data.frame}}
+\item{x}{A Numeric vector.}
 
-\item{alpha}{Alpha, default is \code{0.05}}
+\item{alpha}{Alpha, default is \code{0.05}.}
 
 \item{na.rm}{If \code{TRUE} (default), missing values are dropped.}
 }
 \value{
-\code{numeric} of length one (size of CI in one direction)
+\code{numeric} of length one (size of CI in one direction).
 }
 \description{
 Confidence Intervals
@@ -22,5 +25,6 @@ Confidence Intervals
 \examples{
 df <- data.frame(x = runif(100), y = sample(c("A", "B"), 100, TRUE))
 confint_t(df$x)
+df <- data.frame(x = runif(100), y = sample(c("A", "B"), 100, TRUE))
+confint_norm(df$x)
 }
-

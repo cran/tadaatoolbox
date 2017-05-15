@@ -16,7 +16,7 @@ headers, or \code{"Lato"} for the body style.}
 \item{bg}{Background color, defaults to \code{\link[rmdformats]{readthedown}}'s background,
 \code{#fcfcfc}}
 
-\item{axis_emph}{Which axis to emphasize visually (black lines). One of \code{"x", "y", "xy"}.}
+\item{axis_emph}{Which axis to emphasize visually (black lines). One of \code{"x", "y", "xy", NULL}.}
 }
 \value{
 A ggplot2 theme
@@ -35,4 +35,3 @@ p + theme_readthedown(base_family = "Lato")
 p + theme_readthedown(base_family = "Roboto Slab", axis_emph = "x")
 }
 }
-

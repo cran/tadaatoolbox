@@ -11,6 +11,13 @@ tadaa_t.test(ngo, stunzahl, geschl, print = "markdown")
 ## ----anova---------------------------------------------------------------
 tadaa_aov(stunzahl ~ geschl, data = ngo, print = "markdown")
 
+## ----normtest, eval=FALSE------------------------------------------------
+#  library(dplyr)
+#  print("test")
+#  cols <- ngo[c("deutsch", "englisch", "mathe")]
+#  
+#  tadaa_normtest(data = cols, method = "shapiro", print = "markdown")
+
 ## ----confint-------------------------------------------------------------
 library(ggplot2)
 

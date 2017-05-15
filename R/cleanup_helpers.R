@@ -8,7 +8,14 @@
 #' @note Adapted from \url{http://stackoverflow.com/a/30461945/409362}.
 #' @examples
 #' \dontrun{
-#' df <- delete_na(df)
+#' df <- data.frame(x = sample(c(1:10, NA), 10),
+#'                  y = sample(c(1:10, NA), 10),
+#'                  z = sample(c(1:10, NA), 10))
+#'
+#' df <- delete_na(df, 1)
+#'
+#' # Or with magrittr syntax sugar
+#' df %<>% delete_na
 #' }
 delete_na <- function(df, n = ncol(df) - 1) {
   log      <- apply(df, 2, is.na)
@@ -56,7 +63,6 @@ drop_labels <- function(x) {
 #' Easy p-value formatting
 #'
 #' @param pv A p-value in numeric form.
-#'
 #' @return A formatted \code{character} representation of the input value.
 #' @export
 #' @note Simplified version of \link[pixiedust]{pvalString} which considers \code{< 0.05}.
@@ -77,9 +83,9 @@ pval_string <- function(pv) {
       "> 0.99"
     } else if (p > 0.1) {
       format(round(p, 2), digits = 2)
-    } else if (p > 0.05) {
+    } else if (p >= 0.05) {
       format(round(p, 3), digits = 3)
-    } else if (p > 0.01) {
+    } else if (p > 0.01 & p < 0.05) {
       "< 0.05"
     } else if (p > 0.001) {
       "< 0.01"
