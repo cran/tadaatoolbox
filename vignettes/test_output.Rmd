@@ -1,0 +1,122 @@
+---
+title: "Markdown Test Output"
+author: "Lukas Burk"
+date: "`r format(Sys.time(), '%F', tz = 'UTC', usetz = T)`"
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+vignette: >
+  %\VignetteIndexEntry{Markdown Test Output}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tadaatoolbox)
+```
+
+# Omnibus Tests
+
+## `tadaa_aov`
+
+### One-Way
+
+```{r aov_oneway}
+tadaa_aov(deutsch ~ jahrgang, data = ngo, type = 1, print = "markdown")
+tadaa_aov(deutsch ~ jahrgang, data = ngo, type = 2, print = "markdown")
+tadaa_aov(deutsch ~ jahrgang, data = ngo, type = 3, print = "markdown")
+```
+
+
+### Two-Way
+
+```{r aov_twoway}
+tadaa_aov(deutsch ~ jahrgang * geschl, data = ngo, type = 1, print = "markdown")
+tadaa_aov(deutsch ~ jahrgang * geschl, data = ngo, type = 2, print = "markdown")
+tadaa_aov(deutsch ~ jahrgang * geschl, data = ngo, type = 3, print = "markdown")
+```
+
+#### Testing term sort order
+
+```{r aov_order}
+data.frame(A = rnorm(100, mean = c(25, 30, 45)),
+           G = c(rep("a", 50), rep("b", 50)),
+           R = sample(letters[3:6], size = 100, TRUE),
+           Z = sample(letters[7:8], size = 100, TRUE)) %>%
+  tadaa_aov(data = ., formula = A ~ G * R * Z, type = 3, print = "markdown")
+```
+
+
+## Kruskal-Wallis
+
+```{r kruskal}
+tadaa_kruskal(stunzahl ~ jahrgang, data = ngo, print = "markdown")
+```
+
+
+# Two-Sample Tests
+
+## `tadaa_t.test`
+
+```{r t_test}
+tadaa_t.test(data = ngo, response = deutsch, group = geschl, print = "markdown")
+tadaa_t.test(data = ngo, response = deutsch, group = geschl, paired = TRUE,
+             print = "markdown")
+tadaa_t.test(data = ngo, response = deutsch, group = geschl, var.equal = FALSE,
+             print = "markdown")
+tadaa_t.test(data = ngo, response = deutsch, group = geschl, 
+             direction = "less", print = "markdown")
+tadaa_t.test(data = ngo, response = deutsch, group = geschl, 
+             direction = "greater", print = "markdown")
+```
+
+## `tadaa_wilcoxon`
+
+```{r wilcoxon}
+tadaa_wilcoxon(ngo, deutsch, geschl, print = "markdown")
+tadaa_wilcoxon(ngo, deutsch, geschl, 
+               direction = "less", print = "markdown")
+
+tadaa_wilcoxon(ngo, deutsch, geschl, paired = TRUE, print = "markdown")
+tadaa_wilcoxon(ngo, deutsch, geschl, paired = TRUE, 
+               direction = "less", print = "markdown")
+
+```
+
+# One-Sample Tests
+
+## z-Test
+
+```{r one_sample_z}
+# z: known sigma
+tadaa_one_sample(data = ngo, x = deutsch, mu = 7.5, sigma = 2, print = "markdown")
+tadaa_one_sample(data = ngo, x = deutsch, mu = 8, sigma = 2, 
+                 direction = "less", print = "markdown")
+tadaa_one_sample(data = ngo, x = deutsch, mu = 7, sigma = 2, 
+                 direction = "greater", print = "markdown")
+```
+
+## t-Test
+
+```{r one_sample_t}
+tadaa_one_sample(data = ngo, x = deutsch, mu = 7.5, print = "markdown")
+tadaa_one_sample(data = ngo, x = deutsch, mu = 8, 
+                 direction = "less", print = "markdown")
+tadaa_one_sample(data = ngo, x = deutsch, mu = 7, 
+                 direction = "greater", print = "markdown")
+```
+
+# Assumptions
+
+## Levene
+
+```{r levene}
+tadaa_levene(ngo, deutsch ~ jahrgang, print = "markdown")
+tadaa_levene(ngo, deutsch ~ jahrgang, center = "mean", print = "markdown")
+tadaa_levene(ngo, deutsch ~ jahrgang * geschl, print = "markdown")
+```
+
+
+

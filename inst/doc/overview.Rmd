@@ -19,6 +19,8 @@ knitr::opts_chunk$set(message = F, warning = F)
 This toolbox has been compiled to make the intro to R and statistics with R a little easier.  
 Besides that, it also contains some neat helper functions for tasks or problems one might run in frequently in our field.
 
+A neat overview of functions and stuff can be found [on tadaatoolbox.tadaa-data.de](http://tadaatoolbox.tadaa-data.de/)
+
 # High Level Functions
 
 There are several high level functions aimed at quick output generation:
@@ -37,11 +39,42 @@ On of the first implemented functions, `tadaa_t.test`, automagically checks for 
 tadaa_t.test(ngo, stunzahl, geschl, print = "markdown")
 ```
 
+Or, if you're having a non-parametric day, try this:
+
+```{r wilcox}
+tadaa_wilcoxon(ngo, stunzahl, geschl, print = "markdown")
+```
+
+
 ## ANOVA: `tadaa_aov`
 
+The function knows 3 types of sums of squares, adjustable via the `type` argument and defaulting to type 3 sums of squares. Additionally for type 3, the function also automatically checks the contrasts associated with the factor variables (only for unordered factors), and if `check_names = TRUE`, the contrasts are set to `contr.sum`.
+
 ```{r anova}
-tadaa_aov(stunzahl ~ geschl, data = ngo, print = "markdown")
+tadaa_aov(stunzahl ~ jahrgang * geschl, data = ngo, print = "markdown")
 ```
+
+Or, if you're still unsure about the parametricity of your day:
+
+```{r kruskal}
+tadaa_kruskal(stunzahl ~ jahrgang, data = ngo, print = "markdown")
+```
+
+
+## Pairwise tests
+
+### Pairwise t-tests
+
+Since we found `stats::pairwise.t.test` insuffucient in cases of two-way ANOVAs, we wrapped the function to also enable the testing of interactions. The adjusted p-values are only adjusted within each term, so it is like performing `stats::pairwise.t.test` 3 times with each factor and additionally the interaction of the two factors (which is what the function does internally).
+
+As a bonus, this functions knows the two additional p-adjustment methods `sidak` and `sidakSD` for the Sidak adjustement and the Sidak-like step-down procedure respectively.
+
+```{r pairw_t}
+tadaa_pairwise_t(ngo, response = deutsch, group1 = jahrgang, p.adjust = "bonf", print = "markdown")
+
+tadaa_pairwise_t(ngo, response = deutsch, group1 = jahrgang, group2 = geschl, p.adjust = "sidakSD", print = "markdown")
+```
+
 
 ## Tests for normality: `tadaa_normtest`
 
@@ -70,7 +103,6 @@ tadaa_normtest(data = cols, method = "shapiro", print = "markdown")
 These are pretty self-explanatory. The goal is to provide simple functions for commonly used statistics that look and behave the same, and also only return a single numerical value to play nice with `dplyr::summarize`.
 
 * `modus`: A simple function to extract the mode of a frequency table.
-    - This is **not** guaranteed to only return a single value!
 * `nom_chisqu`: Simple wrapper for `chisq.test` that produces a single value.
 * `nom_phi`: Simple wrapper for `vcd::assocstats` to extract phi.
 * `nom_v`: Simple wrapper for `vcd::assocstats` to extract Cramer's V.
@@ -90,10 +122,7 @@ These are pretty self-explanatory. The goal is to provide simple functions for c
 
 * `generate_recodes`: To produce recode assignments for `car::recode` for evenly sequenced clusters.
 * `interval_labels`: To produce labels for clusters created by `cut`.
-* `tadaa_likertize`: Reduce a range of values to `n` classes (methodologically wonky).
-* `delet_na`: Customizable way to drop `NA` observations from a dataset.
-* `labels_to_factor`: If you mix and match `sjPlot`, `haven` and `ggplot2`, you might need to translate `labels` to `factors`, which is precisely what this functions does. Drop in `data.frame` with `label`, receive `data.frame` with `factors`.
-* `drop_labels`: If you subset a `labelled` dataset, you might end up with labels that have no values with them. This function will drop the now unused `labels`.
+* `delete_na`: Customizable way to drop `NA` observations from a dataset.
 * `pval_string`: Shamalessly adapted from `pixiedust::pvalString`, this will format a p-value as a character string in common `p < 0.001` notation and so on. The difference from the `pixiedust` version is that this function will also print `p < 0.05`.
 
 ## Plotting helpers
@@ -107,9 +136,18 @@ These are pretty self-explanatory. The goal is to provide simple functions for c
 ```{r confint}
 library(ggplot2)
 
-ggplot(data = ngo, aes(x = jahrgang, y = stunzahl)) +
-  stat_summary(fun.data = "mean_ci_t", geom = "errorbar")
+ggplot(data = ngo, aes(x = jahrgang, y = deutsch)) +
+  stat_summary(fun.data = "mean_ci_t", geom = "errorbar") +
+  theme_tadaa()
 ```
+
+As a convenience, we added `tadaa_mean_ci` to quickly plot means with errorbars to get a quick glance at your data.
+
+```{r mean_ci_plot}
+tadaa_mean_ci(data = ngo, response = deutsch, group = jahrgang) +
+  theme_tadaa()
+```
+
 
 ### Prebuilt plotting functions
 

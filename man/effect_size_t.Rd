@@ -4,7 +4,8 @@
 \alias{effect_size_t}
 \title{Simple Effect Size Calculation for t-Tests}
 \usage{
-effect_size_t(data, response, group, na.rm = TRUE)
+effect_size_t(data, response, group, absolute = FALSE, paired = FALSE,
+  na.rm = TRUE)
 }
 \arguments{
 \item{data}{A \code{data.frame}.}
@@ -13,15 +14,34 @@ effect_size_t(data, response, group, na.rm = TRUE)
 
 \item{group}{The group variable, usually a \code{factor}.}
 
+\item{absolute}{If set to \code{TRUE}, the absolute effect size is returned.}
+
+\item{paired}{Whether the effect should be calculated for a paired
+t-test, default is \code{FALSE}.}
+
 \item{na.rm}{If \code{TRUE} (default), missing values are dropped.}
 }
 \value{
 \code{numeric} of length 1.
 }
 \description{
-Simple Effect Size Calculation for t-Tests
+Calculates Cohen's d for two sample comparisons.
+}
+\details{
+The effect size here is Cohen's d as calculated by
+\eqn{d = \frac{m_{diff}}{S_p}}, where \eqn{m_{diff} = \bar{x}_1 - \bar{x}_2} and
+\eqn{S_p =
+  \sqrt{
+    \frac{n_1 - 1 \cdot {s_{x_1}}^2 + n_2 - 1 \cdot {s_{x_2}}^2}
+    {n_1 + n_2 - 2}
+  }
+}.
+
+For \code{paired = TRUE}, \eqn{S_p} is substituted by \eqn{S_D = S_{x_1 - x_2}}
+via \code{sd(x1 - x2)}.
 }
 \examples{
-df <- data.frame(x = runif(100), y = sample(c("A", "B"), 100, TRUE))
-effect_size_t(df, "x", "y")
+set.seed(42)
+df <- data.frame(x = runif(100), group = sample(c("A", "B"), 100, TRUE))
+effect_size_t(df, "x", "group")
 }

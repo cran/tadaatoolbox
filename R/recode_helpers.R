@@ -8,9 +8,13 @@
 #' @importFrom car recode
 #' @export
 #' @examples
-#' tadaa_likertize(x = runif(100, 0, 10), classes = 3, method = "quantiles")
-#' tadaa_likertize(x = runif(100, 0, 10), classes = 3, method = "meansd")
-tadaa_likertize <- function(x, classes = 3, method = "quantiles"){
+#' \dontrun{
+#' likertize(x = runif(100, 0, 10), classes = 3, method = "quantiles")
+#' likertize(x = runif(100, 0, 10), classes = 3, method = "meansd")
+#' }
+likertize <- function(x, classes = 3, method = "quantiles"){
+
+  .Deprecated("You probably want to use sjmisc::split_var")
 
   if (classes == 3) {
     if (method == "quantiles") {
@@ -29,6 +33,14 @@ tadaa_likertize <- function(x, classes = 3, method = "quantiles"){
   } else if (classes == 5) {
     stop("not yet implemented")
   }
+}
+
+#' @rdname likertize
+#' @inheritParams likertize
+#' @export
+tadaa_likertize <- function(x, classes = 3, method = "quantiles") {
+  .Deprecated("It's called likertize() now, but you probably want to use sjmisc::split_var")
+  likertize(x, classes, method)
 }
 
 #' Convenience functions for interval recodes
