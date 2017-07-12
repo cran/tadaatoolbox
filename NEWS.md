@@ -1,4 +1,15 @@
-# tadaatoolbox 0.12.0 (GitHub)
+# tadaatoolbox 0.13.0 (GitHub)
+
+## New Features
+
+- Add `tadaa_chisq` for a $\chi^2$-Test with OR and effect size.
+
+## Under the Hood
+
+- Switched from `sjmisc` to the new `sjlabelled` (Thanks, @strengejacke!)
+- Also re-export `magrittr::%$%` because it's really handy *sometimes*.
+
+# tadaatoolbox 0.12.0 (CRAN)
 
 ## New Features
 
@@ -53,7 +64,7 @@
 - `labels_to_factor`: Was a wrapper around `haven::as_factor` and is obsolete by now, as `as_factor` can do the same thing this function was built for.
 - `tadaa_likertize` is renamed to `likertize`, deprecated since `sjmisc::split_var` is probably better anyway.
 
-# tadaatoolbox 0.11.0 (CRAN)
+# tadaatoolbox 0.11.0
 
 ## New Features
 
