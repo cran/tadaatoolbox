@@ -7,13 +7,15 @@
 #' @return A \code{numeric} value
 #' @export
 #' @import stats
+#' @note The warning message in case of low samples size and possibly incorrect
+#' approximation is suppressed silently.
 #' @examples
 #' nom_chisqu(ngo$abschalt, ngo$geschl)
 nom_chisqu <- function(x, y = NULL, correct = FALSE){
   if (is.table(x)) {
-    as.numeric(chisq.test(x = x, correct = correct)$statistic)
+    as.numeric(suppressWarnings(chisq.test(x = x, correct = correct)$statistic))
   } else {
-    as.numeric(chisq.test(x = x, y = y, correct = correct)$statistic)
+    as.numeric(suppressWarnings(chisq.test(x = x, y = y, correct = correct)$statistic))
   }
 }
 
@@ -124,10 +126,19 @@ tadaa_nom <- function(x, y = NULL, round = 2, print = "console"){
                     "lmbd_x" = lmbd_x, "lmbd_y" = lmbd_y,
                     "lmbd_s" = lmbd_s)
 
-  retprint <- pixiedust::sprinkle_colnames(pixiedust::dust(ret), chisq = "Chi^2",
-                                      cv = "Cramer's V",
-                                      lmbd_x = "Lambda (x dep.)",
-                                      lmbd_y = "Lambda (y dep.)",
-                                      lmbd_s = "Lambda (sym.)")
+  if (print == "markdown") {
+    retprint <- pixiedust::sprinkle_colnames(pixiedust::dust(ret), chisq = "$\\chi^2$",
+                                             cv = "Cramer's V",
+                                             lmbd_x = "Lambda (x dep.)",
+                                             lmbd_y = "Lambda (y dep.)",
+                                             lmbd_s = "Lambda (sym.)")
+  } else {
+    retprint <- pixiedust::sprinkle_colnames(pixiedust::dust(ret), chisq = "Chi^2",
+                                             cv = "Cramer's V",
+                                             lmbd_x = "Lambda (x dep.)",
+                                             lmbd_y = "Lambda (y dep.)",
+                                             lmbd_s = "Lambda (sym.)")
+  }
+
   return(pixiedust::sprinkle_print_method(retprint, print))
 }

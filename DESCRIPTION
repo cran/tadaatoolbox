@@ -1,9 +1,9 @@
 Package: tadaatoolbox
 Type: Package
-Date: 2017-06-10
+Date: 2017-11-05
 Title: Helpers for Data Analysis and Presentation Focused on Undergrad
         Psychology
-Version: 0.13.0
+Version: 0.14.0
 Authors@R: c(person("Lukas", "Burk", email = "lukas@quantenbrot.de", role = c("aut", "cre")),
              person("Tobias", "Anton", email = "unsichtbarer@quantenbrot.de", role = "aut"),
              person("Daniel", "Lüdecke", email = "d.luedecke@uke.de", role = "ctb"))
@@ -19,16 +19,16 @@ Depends: R (>= 3.2.1)
 Suggests: testthat, knitr, rmarkdown
 Imports: stats, methods, broom, magrittr, dplyr, pwr, pixiedust, car,
         ggplot2, lazyeval, sjlabelled, sjmisc, haven, ryouready, vcd,
-        cowplot, nortest, lsr, viridis
+        cowplot, nortest, lsr, viridis, DescTools
 RoxygenNote: 6.0.1
 URL: https://github.com/tadaadata/tadaatoolbox
 BugReports: https://github.com/tadaadata/tadaatoolbox/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2017-07-12 17:05:57 UTC; Lukas
+Packaged: 2017-11-05 17:52:49 UTC; Lukas
 Author: Lukas Burk [aut, cre],
   Tobias Anton [aut],
   Daniel Lüdecke [ctb]
 Maintainer: Lukas Burk <lukas@quantenbrot.de>
 Repository: CRAN
-Date/Publication: 2017-07-12 19:13:35 UTC
+Date/Publication: 2017-11-05 18:01:42 UTC

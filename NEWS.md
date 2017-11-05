@@ -1,4 +1,10 @@
-# tadaatoolbox 0.13.0 (GitHub)
+# tadaatoolbox 0.14.0 (GitHub)
+
+- Silence warnings in functions using `chisq.test`
+- Add `ord_tau` to calculate _all_ the Taus
+    - Append them on `tadaa_ord`
+
+# tadaatoolbox 0.13.0 (CRAN)
 
 ## New Features
 
@@ -8,8 +14,9 @@
 
 - Switched from `sjmisc` to the new `sjlabelled` (Thanks, @strengejacke!)
 - Also re-export `magrittr::%$%` because it's really handy *sometimes*.
+- Fix #30: Undocumented arguments in `tadaa_one_sample`
 
-# tadaatoolbox 0.12.0 (CRAN)
+# tadaatoolbox 0.12.0
 
 ## New Features
 
