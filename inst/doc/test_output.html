@@ -19,244 +19,46 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; }
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource div.sourceLine, .numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em; }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; color = initial; }
-}
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.bn { color: #40a070; } /* BaseN */
-code span.fl { color: #40a070; } /* Float */
-code span.ch { color: #4070a0; } /* Char */
-code span.st { color: #4070a0; } /* String */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.ot { color: #007020; } /* Other */
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.fu { color: #06287e; } /* Function */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code span.cn { color: #880000; } /* Constant */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.im { } /* Import */
-code span.va { color: #19177c; } /* Variable */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.op { color: #666666; } /* Operator */
-code span.bu { } /* BuiltIn */
-code span.ex { } /* Extension */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.at { color: #7d9029; } /* Attribute */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#header {
-text-align: center;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
-
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -267,7 +69,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Markdown Test Output</h1>
 <h4 class="author"><em>Lukas Burk</em></h4>
-<h4 class="date"><em>2017-11-05 UTC</em></h4>
+<h4 class="date"><em>2017-12-15 UTC</em></h4>
 
 
 <div id="TOC">
@@ -295,1197 +97,1199 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </ul>
 </div>
 
-<section id="descriptives" class="level1">
+<div id="descriptives" class="section level1">
 <h1>Descriptives</h1>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_nom</span>(ngo<span class="op">$</span>geschl, ngo<span class="op">$</span>abschalt, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_nom</span>(ngo<span class="op">$</span>geschl, ngo<span class="op">$</span>abschalt, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: right;"><span class="math inline">\(\chi^2\)</span></th>
-<th style="text-align: right;">Cramer’s V</th>
-<th style="text-align: right;">c</th>
-<th style="text-align: right;">Lambda (x dep.)</th>
-<th style="text-align: right;">Lambda (y dep.)</th>
-<th style="text-align: right;">Lambda (sym.)</th>
+<th align="right"><span class="math inline">\(\chi^2\)</span></th>
+<th align="right">Cramer’s V</th>
+<th align="right"><span class="math inline">\(\lambda_x\)</span></th>
+<th align="right"><span class="math inline">\(\lambda_y\)</span></th>
+<th align="right"><span class="math inline">\(\lambda_{xy}\)</span></th>
+<th align="right">c</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">5.35</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: right;">0.15</td>
-<td style="text-align: right;">0.03</td>
-<td style="text-align: right;">0.09</td>
+<td align="right">5.35</td>
+<td align="right">0.15</td>
+<td align="right">0.15</td>
+<td align="right">0.03</td>
+<td align="right">0.09</td>
+<td align="right">0.15</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_ord</span>(ngo<span class="op">$</span>urteil, ngo<span class="op">$</span>leist, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_ord</span>(ngo<span class="op">$</span>urteil, ngo<span class="op">$</span>leistung, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: right;"><span class="math inline">\(\gamma\)</span></th>
-<th style="text-align: right;">Somers’ D</th>
-<th style="text-align: right;">Somers’ D (sym.)</th>
-<th style="text-align: right;"><span class="math inline">\(\tau_A\)</span></th>
-<th style="text-align: right;"><span class="math inline">\(\tau_B\)</span></th>
-<th style="text-align: right;"><span class="math inline">\(\tau_C\)</span></th>
+<th align="right"><span class="math inline">\(\gamma\)</span></th>
+<th align="right"><span class="math inline">\(D_x\)</span></th>
+<th align="right"><span class="math inline">\(D_y\)</span></th>
+<th align="right"><span class="math inline">\(D_{xy}\)</span></th>
+<th align="right"><span class="math inline">\(\tau_A\)</span></th>
+<th align="right"><span class="math inline">\(\tau_B\)</span></th>
+<th align="right"><span class="math inline">\(\tau_C\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">0.74</td>
-<td style="text-align: right;">0.62</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: right;">0.43</td>
+<td align="right">0.65</td>
+<td align="right">0.51</td>
+<td align="right">0.51</td>
+<td align="right">0.51</td>
+<td align="right">0.39</td>
+<td align="right">0.51</td>
+<td align="right">0.43</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-<section id="omnibus-tests" class="level1">
+</div>
+<div id="omnibus-tests" class="section level1">
 <h1>Omnibus Tests</h1>
-<section id="tadaa_aov" class="level2">
+<div id="tadaa_aov" class="section level2">
 <h2><code>tadaa_aov</code></h2>
-<section id="one-way" class="level3">
+<div id="one-way" class="section level3">
 <h3>One-Way</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 5: <strong>One-Way ANOVA</strong>: Using Type I Sum of Squares</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;"><span class="math inline">\(\eta^2\)</span></th>
-<th style="text-align: center;">Cohen’s f</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p</th>
+<th align="center"><span class="math inline">\(\eta^2\)</span></th>
+<th align="center">Cohen’s f</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">52.57</td>
-<td style="text-align: center;">26.28</td>
-<td style="text-align: center;">6.54</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0.05</td>
-<td style="text-align: center;">0.23</td>
-<td style="text-align: center;">0.91</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">52.57</td>
+<td align="center">26.28</td>
+<td align="center">6.54</td>
+<td align="center">&lt; 0.01</td>
+<td align="center">0.05</td>
+<td align="center">0.23</td>
+<td align="center">0.91</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">247</td>
-<td style="text-align: center;">993.23</td>
-<td style="text-align: center;">4.02</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">247</td>
+<td align="center">993.23</td>
+<td align="center">4.02</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Total</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">1045.8</td>
-<td style="text-align: center;">30.3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Total</td>
+<td align="center">249</td>
+<td align="center">1045.8</td>
+<td align="center">30.3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">2</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">2</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 6: <strong>One-Way ANOVA</strong>: Using Type II Sum of Squares</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;"><span class="math inline">\(\eta^2\)</span></th>
-<th style="text-align: center;">Cohen’s f</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p</th>
+<th align="center"><span class="math inline">\(\eta^2\)</span></th>
+<th align="center">Cohen’s f</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">52.57</td>
-<td style="text-align: center;">26.28</td>
-<td style="text-align: center;">6.54</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0.05</td>
-<td style="text-align: center;">0.23</td>
-<td style="text-align: center;">0.91</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">52.57</td>
+<td align="center">26.28</td>
+<td align="center">6.54</td>
+<td align="center">&lt; 0.01</td>
+<td align="center">0.05</td>
+<td align="center">0.23</td>
+<td align="center">0.91</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">247</td>
-<td style="text-align: center;">993.23</td>
-<td style="text-align: center;">4.02</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">247</td>
+<td align="center">993.23</td>
+<td align="center">4.02</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Total</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">1045.8</td>
-<td style="text-align: center;">30.3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Total</td>
+<td align="center">249</td>
+<td align="center">1045.8</td>
+<td align="center">30.3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 7: <strong>One-Way ANOVA</strong>: Using Type III Sum of Squares</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;"><span class="math inline">\(\eta^2\)</span></th>
-<th style="text-align: center;">Cohen’s f</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p</th>
+<th align="center"><span class="math inline">\(\eta^2\)</span></th>
+<th align="center">Cohen’s f</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">52.57</td>
-<td style="text-align: center;">26.28</td>
-<td style="text-align: center;">6.54</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0.05</td>
-<td style="text-align: center;">0.23</td>
-<td style="text-align: center;">0.91</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">52.57</td>
+<td align="center">26.28</td>
+<td align="center">6.54</td>
+<td align="center">&lt; 0.01</td>
+<td align="center">0.05</td>
+<td align="center">0.23</td>
+<td align="center">0.91</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">247</td>
-<td style="text-align: center;">993.23</td>
-<td style="text-align: center;">4.02</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">247</td>
+<td align="center">993.23</td>
+<td align="center">4.02</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Total</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">1045.8</td>
-<td style="text-align: center;">30.3</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Total</td>
+<td align="center">249</td>
+<td align="center">1045.8</td>
+<td align="center">30.3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-<section id="two-way" class="level3">
+</div>
+<div id="two-way" class="section level3">
 <h3>Two-Way</h3>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">1</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 8: <strong>Two-Way ANOVA</strong>: Using Type I Sum of Squares</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
-<th style="text-align: center;">Cohen’s f</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p</th>
+<th align="center"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
+<th align="center">Cohen’s f</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">geschl</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">66.56</td>
-<td style="text-align: center;">66.56</td>
-<td style="text-align: center;">18.09</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.07</td>
-<td style="text-align: center;">0.27</td>
-<td style="text-align: center;">0.99</td>
+<td align="center">geschl</td>
+<td align="center">1</td>
+<td align="center">66.56</td>
+<td align="center">66.56</td>
+<td align="center">18.09</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.07</td>
+<td align="center">0.27</td>
+<td align="center">0.99</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">52.57</td>
-<td style="text-align: center;">26.28</td>
-<td style="text-align: center;">7.14</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.06</td>
-<td style="text-align: center;">0.24</td>
-<td style="text-align: center;">0.93</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">52.57</td>
+<td align="center">26.28</td>
+<td align="center">7.14</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.06</td>
+<td align="center">0.24</td>
+<td align="center">0.93</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">jahrgang:geschl</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">28.85</td>
-<td style="text-align: center;">14.42</td>
-<td style="text-align: center;">3.92</td>
-<td style="text-align: center;">0.02</td>
-<td style="text-align: center;">0.03</td>
-<td style="text-align: center;">0.18</td>
-<td style="text-align: center;">0.71</td>
+<td align="center">jahrgang:geschl</td>
+<td align="center">2</td>
+<td align="center">28.85</td>
+<td align="center">14.42</td>
+<td align="center">3.92</td>
+<td align="center">&lt; 0.05</td>
+<td align="center">0.03</td>
+<td align="center">0.18</td>
+<td align="center">0.71</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">244</td>
-<td style="text-align: center;">897.82</td>
-<td style="text-align: center;">3.68</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">244</td>
+<td align="center">897.82</td>
+<td align="center">3.68</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Total</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">1045.8</td>
-<td style="text-align: center;">110.95</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Total</td>
+<td align="center">249</td>
+<td align="center">1045.8</td>
+<td align="center">110.95</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">2</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">2</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 9: <strong>Two-Way ANOVA</strong>: Using Type II Sum of Squares</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
-<th style="text-align: center;">Cohen’s f</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p</th>
+<th align="center"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
+<th align="center">Cohen’s f</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">geschl</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">66.56</td>
-<td style="text-align: center;">66.56</td>
-<td style="text-align: center;">18.09</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.07</td>
-<td style="text-align: center;">0.27</td>
-<td style="text-align: center;">0.99</td>
+<td align="center">geschl</td>
+<td align="center">1</td>
+<td align="center">66.56</td>
+<td align="center">66.56</td>
+<td align="center">18.09</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.07</td>
+<td align="center">0.27</td>
+<td align="center">0.99</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">52.57</td>
-<td style="text-align: center;">26.28</td>
-<td style="text-align: center;">7.14</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.06</td>
-<td style="text-align: center;">0.24</td>
-<td style="text-align: center;">0.93</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">52.57</td>
+<td align="center">26.28</td>
+<td align="center">7.14</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.06</td>
+<td align="center">0.24</td>
+<td align="center">0.93</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">jahrgang:geschl</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">28.85</td>
-<td style="text-align: center;">14.42</td>
-<td style="text-align: center;">3.92</td>
-<td style="text-align: center;">0.02</td>
-<td style="text-align: center;">0.03</td>
-<td style="text-align: center;">0.18</td>
-<td style="text-align: center;">0.71</td>
+<td align="center">jahrgang:geschl</td>
+<td align="center">2</td>
+<td align="center">28.85</td>
+<td align="center">14.42</td>
+<td align="center">3.92</td>
+<td align="center">&lt; 0.05</td>
+<td align="center">0.03</td>
+<td align="center">0.18</td>
+<td align="center">0.71</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">244</td>
-<td style="text-align: center;">897.82</td>
-<td style="text-align: center;">3.68</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">244</td>
+<td align="center">897.82</td>
+<td align="center">3.68</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Total</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">1045.8</td>
-<td style="text-align: center;">110.95</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Total</td>
+<td align="center">249</td>
+<td align="center">1045.8</td>
+<td align="center">110.95</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_aov</span>(deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">data =</span> ngo, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 10: <strong>Two-Way ANOVA</strong>: Using Type III Sum of Squares</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
-<th style="text-align: center;">Cohen’s f</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p</th>
+<th align="center"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
+<th align="center">Cohen’s f</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">geschl</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">71.4</td>
-<td style="text-align: center;">71.4</td>
-<td style="text-align: center;">19.41</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.07</td>
-<td style="text-align: center;">0.28</td>
-<td style="text-align: center;">0.99</td>
+<td align="center">geschl</td>
+<td align="center">1</td>
+<td align="center">71.4</td>
+<td align="center">71.4</td>
+<td align="center">19.41</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.07</td>
+<td align="center">0.28</td>
+<td align="center">0.99</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">52.57</td>
-<td style="text-align: center;">26.28</td>
-<td style="text-align: center;">7.14</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.06</td>
-<td style="text-align: center;">0.24</td>
-<td style="text-align: center;">0.93</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">52.57</td>
+<td align="center">26.28</td>
+<td align="center">7.14</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.06</td>
+<td align="center">0.24</td>
+<td align="center">0.93</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">jahrgang:geschl</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">28.85</td>
-<td style="text-align: center;">14.42</td>
-<td style="text-align: center;">3.92</td>
-<td style="text-align: center;">0.02</td>
-<td style="text-align: center;">0.03</td>
-<td style="text-align: center;">0.18</td>
-<td style="text-align: center;">0.71</td>
+<td align="center">jahrgang:geschl</td>
+<td align="center">2</td>
+<td align="center">28.85</td>
+<td align="center">14.42</td>
+<td align="center">3.92</td>
+<td align="center">&lt; 0.05</td>
+<td align="center">0.03</td>
+<td align="center">0.18</td>
+<td align="center">0.71</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">244</td>
-<td style="text-align: center;">897.82</td>
-<td style="text-align: center;">3.68</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">244</td>
+<td align="center">897.82</td>
+<td align="center">3.68</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Total</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">1050.63</td>
-<td style="text-align: center;">115.79</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Total</td>
+<td align="center">249</td>
+<td align="center">1050.63</td>
+<td align="center">115.79</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<section id="testing-term-sort-order" class="level4">
+<div id="testing-term-sort-order" class="section level4">
 <h4>Testing term sort order</h4>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">data.frame</span>(<span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>)),</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">           <span class="dt">G =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">50</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">50</span>)),</div>
-<div class="sourceLine" id="3" href="#3" data-line-number="3">           <span class="dt">R =</span> <span class="kw">sample</span>(letters[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">size =</span> <span class="dv">100</span>, <span class="ot">TRUE</span>),</div>
-<div class="sourceLine" id="4" href="#4" data-line-number="4">           <span class="dt">Z =</span> <span class="kw">sample</span>(letters[<span class="dv">7</span><span class="op">:</span><span class="dv">8</span>], <span class="dt">size =</span> <span class="dv">100</span>, <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></div>
-<div class="sourceLine" id="5" href="#5" data-line-number="5"><span class="st">  </span><span class="kw">tadaa_aov</span>(<span class="dt">data =</span> ., <span class="dt">formula =</span> A <span class="op">~</span><span class="st"> </span>G <span class="op">*</span><span class="st"> </span>R <span class="op">*</span><span class="st"> </span>Z, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(<span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>)),
+           <span class="dt">G =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">50</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">50</span>)),
+           <span class="dt">R =</span> <span class="kw">sample</span>(letters[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>], <span class="dt">size =</span> <span class="dv">100</span>, <span class="ot">TRUE</span>),
+           <span class="dt">Z =</span> <span class="kw">sample</span>(letters[<span class="dv">7</span><span class="op">:</span><span class="dv">8</span>], <span class="dt">size =</span> <span class="dv">100</span>, <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">tadaa_aov</span>(<span class="dt">data =</span> ., <span class="dt">formula =</span> A <span class="op">~</span><span class="st"> </span>G <span class="op">*</span><span class="st"> </span>R <span class="op">*</span><span class="st"> </span>Z, <span class="dt">type =</span> <span class="dv">3</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 11: <strong>Factorial ANOVA</strong>: Using Type III Sum of Squares</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SS</th>
-<th style="text-align: center;">MS</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
-<th style="text-align: center;">Cohen’s f</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">SS</th>
+<th align="center">MS</th>
+<th align="center">F</th>
+<th align="center">p</th>
+<th align="center"><span class="math inline">\(\eta_\text{part}^2\)</span></th>
+<th align="center">Cohen’s f</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">G</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">55.69</td>
-<td style="text-align: center;">55.69</td>
-<td style="text-align: center;">0.73</td>
-<td style="text-align: center;">0.4</td>
-<td style="text-align: center;">0.01</td>
-<td style="text-align: center;">0.09</td>
-<td style="text-align: center;">0.14</td>
+<td align="center">G</td>
+<td align="center">1</td>
+<td align="center">13.65</td>
+<td align="center">13.65</td>
+<td align="center">0.17</td>
+<td align="center">0.68</td>
+<td align="center">0</td>
+<td align="center">0.05</td>
+<td align="center">0.07</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">G:R</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">99.54</td>
-<td style="text-align: center;">33.18</td>
-<td style="text-align: center;">0.43</td>
-<td style="text-align: center;">0.73</td>
-<td style="text-align: center;">0.02</td>
-<td style="text-align: center;">0.12</td>
-<td style="text-align: center;">0.14</td>
+<td align="center">G:R</td>
+<td align="center">3</td>
+<td align="center">288.04</td>
+<td align="center">96.01</td>
+<td align="center">1.22</td>
+<td align="center">0.31</td>
+<td align="center">0.04</td>
+<td align="center">0.21</td>
+<td align="center">0.33</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">G:R:Z</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">103.95</td>
-<td style="text-align: center;">34.65</td>
-<td style="text-align: center;">0.45</td>
-<td style="text-align: center;">0.72</td>
-<td style="text-align: center;">0.02</td>
-<td style="text-align: center;">0.13</td>
-<td style="text-align: center;">0.14</td>
+<td align="center">G:R:Z</td>
+<td align="center">3</td>
+<td align="center">83.35</td>
+<td align="center">27.78</td>
+<td align="center">0.35</td>
+<td align="center">0.79</td>
+<td align="center">0.01</td>
+<td align="center">0.11</td>
+<td align="center">0.12</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">G:Z</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">331.38</td>
-<td style="text-align: center;">331.38</td>
-<td style="text-align: center;">4.34</td>
-<td style="text-align: center;">0.04</td>
-<td style="text-align: center;">0.05</td>
-<td style="text-align: center;">0.23</td>
-<td style="text-align: center;">0.55</td>
+<td align="center">G:Z</td>
+<td align="center">1</td>
+<td align="center">1.77</td>
+<td align="center">1.77</td>
+<td align="center">0.02</td>
+<td align="center">0.88</td>
+<td align="center">0</td>
+<td align="center">0.02</td>
+<td align="center">0.05</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">R</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">90.24</td>
-<td style="text-align: center;">30.08</td>
-<td style="text-align: center;">0.39</td>
-<td style="text-align: center;">0.76</td>
-<td style="text-align: center;">0.01</td>
-<td style="text-align: center;">0.12</td>
-<td style="text-align: center;">0.13</td>
+<td align="center">R</td>
+<td align="center">3</td>
+<td align="center">67.49</td>
+<td align="center">22.5</td>
+<td align="center">0.29</td>
+<td align="center">0.84</td>
+<td align="center">0.01</td>
+<td align="center">0.1</td>
+<td align="center">0.11</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">R:Z</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">379.67</td>
-<td style="text-align: center;">126.56</td>
-<td style="text-align: center;">1.66</td>
-<td style="text-align: center;">0.18</td>
-<td style="text-align: center;">0.06</td>
-<td style="text-align: center;">0.24</td>
-<td style="text-align: center;">0.44</td>
+<td align="center">R:Z</td>
+<td align="center">3</td>
+<td align="center">344.58</td>
+<td align="center">114.86</td>
+<td align="center">1.46</td>
+<td align="center">0.23</td>
+<td align="center">0.05</td>
+<td align="center">0.23</td>
+<td align="center">0.39</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Z</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0.43</td>
-<td style="text-align: center;">0.43</td>
-<td style="text-align: center;">0.01</td>
-<td style="text-align: center;">0.94</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">0.01</td>
-<td style="text-align: center;">0.05</td>
+<td align="center">Z</td>
+<td align="center">1</td>
+<td align="center">0.54</td>
+<td align="center">0.54</td>
+<td align="center">0.01</td>
+<td align="center">0.93</td>
+<td align="center">0</td>
+<td align="center">0.01</td>
+<td align="center">0.05</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">84</td>
-<td style="text-align: center;">6413.25</td>
-<td style="text-align: center;">76.35</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">84</td>
+<td align="center">6630.09</td>
+<td align="center">78.93</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Total</td>
-<td style="text-align: center;">99</td>
-<td style="text-align: center;">7474.14</td>
-<td style="text-align: center;">688.31</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Total</td>
+<td align="center">99</td>
+<td align="center">7429.51</td>
+<td align="center">356.04</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-</section>
-</section>
-<section id="kruskal-wallis" class="level2">
+</div>
+</div>
+</div>
+<div id="kruskal-wallis" class="section level2">
 <h2>Kruskal-Wallis</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_kruskal</span>(stunzahl <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_kruskal</span>(stunzahl <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">data =</span> ngo, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 12: <strong>Kruskal-Wallis Rank Sum Test</strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\chi^2\)</span></th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">p</th>
+<th align="center"><span class="math inline">\(\chi^2\)</span></th>
+<th align="center">df</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">20.89</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">&lt; 0.001</td>
+<td align="center">20.89</td>
+<td align="center">2</td>
+<td align="center">&lt; 0.001</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-</section>
-<section id="two-sample-tests" class="level1">
+</div>
+</div>
+<div id="two-sample-tests" class="section level1">
 <h1>Two-Sample Tests</h1>
-<section id="tadaa_chisq" class="level2">
+<div id="tadaa_chisq" class="section level2">
 <h2><code>tadaa_chisq</code></h2>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_chisq</span>(ngo, abschalt, geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_chisq</span>(ngo, abschalt, geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 13: <strong>Pearson’s Chi-squared test with Yates’ continuity correction</strong></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\chi^2\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">Odds Ratio</th>
-<th style="text-align: center;"><span class="math inline">\(\phi\)</span></th>
+<th align="center"><span class="math inline">\(\chi^2\)</span></th>
+<th align="center">p</th>
+<th align="center">df</th>
+<th align="center">Odds Ratio</th>
+<th align="center"><span class="math inline">\(\phi\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">4.77</td>
-<td style="text-align: center;">0.03</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0.55</td>
-<td style="text-align: center;">0.15</td>
+<td align="center">4.77</td>
+<td align="center">&lt; 0.05</td>
+<td align="center">1</td>
+<td align="center">0.55</td>
+<td align="center">0.15</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-<section id="tadaa_t.test" class="level2">
+</div>
+<div id="tadaa_t.test" class="section level2">
 <h2><code>tadaa_t.test</code></h2>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 14: <strong>Two Sample t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 \neq \mu_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Diff</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Diff</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
+<th align="center">t</th>
+<th align="center">SE</th>
+<th align="center">df</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1.03</td>
-<td style="text-align: center;">7.09</td>
-<td style="text-align: center;">8.12</td>
-<td style="text-align: center;">-4.11</td>
-<td style="text-align: center;">0.25</td>
-<td style="text-align: center;">248</td>
-<td style="text-align: center;">(-1.53 - -0.54)</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">-0.52</td>
-<td style="text-align: center;">0.98</td>
+<td align="center">-1.03</td>
+<td align="center">7.09</td>
+<td align="center">8.12</td>
+<td align="center">-4.11</td>
+<td align="center">0.25</td>
+<td align="center">248</td>
+<td align="center">(-1.53 - -0.54)</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">-0.52</td>
+<td align="center">0.98</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, <span class="dt">paired =</span> <span class="ot">TRUE</span>,</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">             <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, <span class="dt">paired =</span> <span class="ot">TRUE</span>,
+             <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 15: <strong>Paired t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 \neq \mu_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Diff</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Diff</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
+<th align="center">t</th>
+<th align="center">SE</th>
+<th align="center">df</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1.03</td>
-<td style="text-align: center;">7.09</td>
-<td style="text-align: center;">8.12</td>
-<td style="text-align: center;">-4.21</td>
-<td style="text-align: center;">0.25</td>
-<td style="text-align: center;">124</td>
-<td style="text-align: center;">(-1.52 - -0.55)</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">-0.38</td>
-<td style="text-align: center;">0.99</td>
+<td align="center">-1.03</td>
+<td align="center">7.09</td>
+<td align="center">8.12</td>
+<td align="center">-4.21</td>
+<td align="center">0.25</td>
+<td align="center">124</td>
+<td align="center">(-1.52 - -0.55)</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">-0.38</td>
+<td align="center">0.99</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>,</div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">             <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>,
+             <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 16: <strong>Welch Two Sample t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 \neq \mu_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Diff</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Diff</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
+<th align="center">t</th>
+<th align="center">SE</th>
+<th align="center">df</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1.03</td>
-<td style="text-align: center;">7.09</td>
-<td style="text-align: center;">8.12</td>
-<td style="text-align: center;">-4.11</td>
-<td style="text-align: center;">0.25</td>
-<td style="text-align: center;">247.43</td>
-<td style="text-align: center;">(-1.53 - -0.54)</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">-0.52</td>
-<td style="text-align: center;">0.98</td>
+<td align="center">-1.03</td>
+<td align="center">7.09</td>
+<td align="center">8.12</td>
+<td align="center">-4.11</td>
+<td align="center">0.25</td>
+<td align="center">247.43</td>
+<td align="center">(-1.53 - -0.54)</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">-0.52</td>
+<td align="center">0.98</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">             <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, 
+             <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 17: <strong>Two Sample t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 &lt; \mu_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Diff</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Diff</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
+<th align="center">t</th>
+<th align="center">SE</th>
+<th align="center">df</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1.03</td>
-<td style="text-align: center;">7.09</td>
-<td style="text-align: center;">8.12</td>
-<td style="text-align: center;">-4.11</td>
-<td style="text-align: center;">0.25</td>
-<td style="text-align: center;">248</td>
-<td style="text-align: center;">(-Inf - -0.62)</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">-0.52</td>
-<td style="text-align: center;">0.99</td>
+<td align="center">-1.03</td>
+<td align="center">7.09</td>
+<td align="center">8.12</td>
+<td align="center">-4.11</td>
+<td align="center">0.25</td>
+<td align="center">248</td>
+<td align="center">(-Inf - -0.62)</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">-0.52</td>
+<td align="center">0.99</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">             <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_t.test</span>(<span class="dt">data =</span> ngo, <span class="dt">response =</span> deutsch, <span class="dt">group =</span> geschl, 
+             <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 18: <strong>Two Sample t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 &gt; \mu_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Diff</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center">Diff</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(\mu_2\)</span> Weiblich</th>
+<th align="center">t</th>
+<th align="center">SE</th>
+<th align="center">df</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1.03</td>
-<td style="text-align: center;">7.09</td>
-<td style="text-align: center;">8.12</td>
-<td style="text-align: center;">-4.11</td>
-<td style="text-align: center;">0.25</td>
-<td style="text-align: center;">248</td>
-<td style="text-align: center;">(-1.45 - Inf)</td>
-<td style="text-align: center;">&gt; 0.99</td>
-<td style="text-align: center;">-0.52</td>
-<td style="text-align: center;">0</td>
+<td align="center">-1.03</td>
+<td align="center">7.09</td>
+<td align="center">8.12</td>
+<td align="center">-4.11</td>
+<td align="center">0.25</td>
+<td align="center">248</td>
+<td align="center">(-1.45 - Inf)</td>
+<td align="center">&gt; 0.99</td>
+<td align="center">-0.52</td>
+<td align="center">0</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-<section id="tadaa_wilcoxon" class="level2">
+</div>
+<div id="tadaa_wilcoxon" class="section level2">
 <h2><code>tadaa_wilcoxon</code></h2>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 19: <strong>Wilcoxon rank sum test with continuity correction</strong> with alternative hypothesis: <span class="math inline">\(M_1 \neq M_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Difference</th>
-<th style="text-align: center;"><span class="math inline">\(M_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(M_2\)</span> Weiblich</th>
-<th style="text-align: center;">W</th>
-<th style="text-align: center;">p</th>
+<th align="center">Difference</th>
+<th align="center"><span class="math inline">\(M_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(M_2\)</span> Weiblich</th>
+<th align="center">W</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">5620.5</td>
-<td style="text-align: center;">&lt; 0.001</td>
+<td align="center">-1</td>
+<td align="center">7</td>
+<td align="center">8</td>
+<td align="center">5620.5</td>
+<td align="center">&lt; 0.001</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">               <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, 
+               <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 20: <strong>Wilcoxon rank sum test with continuity correction</strong> with alternative hypothesis: <span class="math inline">\(M_1 &lt; M_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Difference</th>
-<th style="text-align: center;"><span class="math inline">\(M_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(M_2\)</span> Weiblich</th>
-<th style="text-align: center;">W</th>
-<th style="text-align: center;">p</th>
+<th align="center">Difference</th>
+<th align="center"><span class="math inline">\(M_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(M_2\)</span> Weiblich</th>
+<th align="center">W</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">5620.5</td>
-<td style="text-align: center;">&lt; 0.001</td>
+<td align="center">-1</td>
+<td align="center">7</td>
+<td align="center">8</td>
+<td align="center">5620.5</td>
+<td align="center">&lt; 0.001</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 21: <strong>Wilcoxon signed rank test with continuity correction</strong> with alternative hypothesis: <span class="math inline">\(M_1 \neq M_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Difference</th>
-<th style="text-align: center;"><span class="math inline">\(M_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(M_2\)</span> Weiblich</th>
-<th style="text-align: center;">W</th>
-<th style="text-align: center;">p</th>
+<th align="center">Difference</th>
+<th align="center"><span class="math inline">\(M_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(M_2\)</span> Weiblich</th>
+<th align="center">W</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">1527</td>
-<td style="text-align: center;">&lt; 0.001</td>
+<td align="center">-1</td>
+<td align="center">7</td>
+<td align="center">8</td>
+<td align="center">1527</td>
+<td align="center">&lt; 0.001</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, <span class="dt">paired =</span> <span class="ot">TRUE</span>, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">               <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_wilcoxon</span>(ngo, deutsch, geschl, <span class="dt">paired =</span> <span class="ot">TRUE</span>, 
+               <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 22: <strong>Wilcoxon signed rank test with continuity correction</strong> with alternative hypothesis: <span class="math inline">\(M_1 &lt; M_2\)</span></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Difference</th>
-<th style="text-align: center;"><span class="math inline">\(M_1\)</span> Männlich</th>
-<th style="text-align: center;"><span class="math inline">\(M_2\)</span> Weiblich</th>
-<th style="text-align: center;">W</th>
-<th style="text-align: center;">p</th>
+<th align="center">Difference</th>
+<th align="center"><span class="math inline">\(M_1\)</span> Männlich</th>
+<th align="center"><span class="math inline">\(M_2\)</span> Weiblich</th>
+<th align="center">W</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">-1</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">1527</td>
-<td style="text-align: center;">&lt; 0.001</td>
+<td align="center">-1</td>
+<td align="center">7</td>
+<td align="center">8</td>
+<td align="center">1527</td>
+<td align="center">&lt; 0.001</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-</section>
-<section id="one-sample-tests" class="level1">
+</div>
+</div>
+<div id="one-sample-tests" class="section level1">
 <h1>One-Sample Tests</h1>
-<section id="z-test" class="level2">
+<div id="z-test" class="section level2">
 <h2>z-Test</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="co"># z: known sigma</span></div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="fl">7.5</span>, <span class="dt">sigma =</span> <span class="dv">2</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># z: known sigma</span>
+<span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="fl">7.5</span>, <span class="dt">sigma =</span> <span class="dv">2</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 23: <strong>z-Test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 \neq\)</span> 7.5</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> deutsch</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">z</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> deutsch</th>
+<th align="center">SE</th>
+<th align="center">z</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">7.6</td>
-<td style="text-align: center;">0.13</td>
-<td style="text-align: center;">0.82</td>
-<td style="text-align: center;">(6.59 - 8.62)</td>
-<td style="text-align: center;">0.41</td>
-<td style="text-align: center;">0.05</td>
-<td style="text-align: center;">0.13</td>
+<td align="center">7.6</td>
+<td align="center">0.13</td>
+<td align="center">0.82</td>
+<td align="center">(6.59 - 8.62)</td>
+<td align="center">0.41</td>
+<td align="center">0.05</td>
+<td align="center">0.13</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">8</span>, <span class="dt">sigma =</span> <span class="dv">2</span>, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">                 <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">8</span>, <span class="dt">sigma =</span> <span class="dv">2</span>, 
+                 <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 24: <strong>z-Test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 &lt;\)</span> 8</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> deutsch</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">z</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> deutsch</th>
+<th align="center">SE</th>
+<th align="center">z</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">7.6</td>
-<td style="text-align: center;">0.13</td>
-<td style="text-align: center;">-3.13</td>
-<td style="text-align: center;">(6.59 - 8.62)</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">-0.2</td>
-<td style="text-align: center;">0.93</td>
+<td align="center">7.6</td>
+<td align="center">0.13</td>
+<td align="center">-3.13</td>
+<td align="center">(6.59 - 8.62)</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">-0.2</td>
+<td align="center">0.93</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">7</span>, <span class="dt">sigma =</span> <span class="dv">2</span>, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">                 <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">7</span>, <span class="dt">sigma =</span> <span class="dv">2</span>, 
+                 <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 25: <strong>z-Test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 &gt;\)</span> 7</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> deutsch</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">z</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> deutsch</th>
+<th align="center">SE</th>
+<th align="center">z</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">7.6</td>
-<td style="text-align: center;">0.13</td>
-<td style="text-align: center;">4.78</td>
-<td style="text-align: center;">(6.59 - 8.62)</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.3</td>
-<td style="text-align: center;">1</td>
+<td align="center">7.6</td>
+<td align="center">0.13</td>
+<td align="center">4.78</td>
+<td align="center">(6.59 - 8.62)</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.3</td>
+<td align="center">1</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-<section id="t-test" class="level2">
+</div>
+<div id="t-test" class="section level2">
 <h2>t-Test</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="fl">7.5</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="fl">7.5</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 26: <strong>One Sample t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 \neq\)</span> 7.5</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> deutsch</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> deutsch</th>
+<th align="center">df</th>
+<th align="center">SE</th>
+<th align="center">t</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">7.6</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">9.48</td>
-<td style="text-align: center;">0.8</td>
-<td style="text-align: center;">(7.35 - 7.86)</td>
-<td style="text-align: center;">0.42</td>
-<td style="text-align: center;">0.05</td>
-<td style="text-align: center;">0.13</td>
+<td align="center">7.6</td>
+<td align="center">249</td>
+<td align="center">0.13</td>
+<td align="center">0.8</td>
+<td align="center">(7.35 - 7.86)</td>
+<td align="center">0.42</td>
+<td align="center">0.05</td>
+<td align="center">0.13</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">8</span>, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">                 <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">8</span>, 
+                 <span class="dt">direction =</span> <span class="st">&quot;less&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 27: <strong>One Sample t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 &lt;\)</span> 8</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> deutsch</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> deutsch</th>
+<th align="center">df</th>
+<th align="center">SE</th>
+<th align="center">t</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">7.6</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">-2.49</td>
-<td style="text-align: center;">-3.06</td>
-<td style="text-align: center;">(7.35 - 7.86)</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">-0.19</td>
-<td style="text-align: center;">0.92</td>
+<td align="center">7.6</td>
+<td align="center">249</td>
+<td align="center">0.13</td>
+<td align="center">-3.06</td>
+<td align="center">(7.35 - 7.86)</td>
+<td align="center">&lt; 0.01</td>
+<td align="center">-0.19</td>
+<td align="center">0.92</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">7</span>, </div>
-<div class="sourceLine" id="2" href="#2" data-line-number="2">                 <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_one_sample</span>(<span class="dt">data =</span> ngo, <span class="dt">x =</span> deutsch, <span class="dt">mu =</span> <span class="dv">7</span>, 
+                 <span class="dt">direction =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 28: <strong>One Sample t-test</strong> with alternative hypothesis: <span class="math inline">\(\mu_1 &gt;\)</span> 7</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\mu_1\)</span> deutsch</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">SE</th>
-<th style="text-align: center;">t</th>
-<th style="text-align: center;"><span class="math inline">\(CI_{95\%}\)</span></th>
-<th style="text-align: center;">p</th>
-<th style="text-align: center;">Cohen's d</th>
-<th style="text-align: center;">Power</th>
+<th align="center"><span class="math inline">\(\mu_1\)</span> deutsch</th>
+<th align="center">df</th>
+<th align="center">SE</th>
+<th align="center">t</th>
+<th align="center"><span class="math inline">\(CI_{95\%}\)</span></th>
+<th align="center">p</th>
+<th align="center">Cohen's d</th>
+<th align="center">Power</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">7.6</td>
-<td style="text-align: center;">249</td>
-<td style="text-align: center;">1.63</td>
-<td style="text-align: center;">4.66</td>
-<td style="text-align: center;">(7.35 - 7.86)</td>
-<td style="text-align: center;">&lt; 0.001</td>
-<td style="text-align: center;">0.29</td>
-<td style="text-align: center;">1</td>
+<td align="center">7.6</td>
+<td align="center">249</td>
+<td align="center">0.13</td>
+<td align="center">4.66</td>
+<td align="center">(7.35 - 7.86)</td>
+<td align="center">&lt; 0.001</td>
+<td align="center">0.29</td>
+<td align="center">1</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-</section>
-<section id="assumptions" class="level1">
+</div>
+</div>
+<div id="assumptions" class="section level1">
 <h1>Assumptions</h1>
-<section id="levene" class="level2">
+<div id="levene" class="section level2">
 <h2>Levene</h2>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_levene</span>(ngo, deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_levene</span>(ngo, deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 29: <strong>Levene's Test</strong> for Homogeneity of Variance (<strong>Brown-Forsythe</strong> Adaption)</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">F</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">0.41</td>
-<td style="text-align: center;">0.66</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">0.41</td>
+<td align="center">0.66</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">247</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">247</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_levene</span>(ngo, deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">center =</span> <span class="st">&quot;mean&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_levene</span>(ngo, deutsch <span class="op">~</span><span class="st"> </span>jahrgang, <span class="dt">center =</span> <span class="st">&quot;mean&quot;</span>, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 30: <strong>Levene's Test</strong> for Homogeneity of Variance</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">F</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">jahrgang</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">0.27</td>
-<td style="text-align: center;">0.76</td>
+<td align="center">jahrgang</td>
+<td align="center">2</td>
+<td align="center">0.27</td>
+<td align="center">0.76</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">247</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">247</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-<pre class="sourceCode r"><code class="sourceCode r"><div class="sourceLine" id="1" href="#1" data-line-number="1"><span class="kw">tadaa_levene</span>(ngo, deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</div></code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tadaa_levene</span>(ngo, deutsch <span class="op">~</span><span class="st"> </span>jahrgang <span class="op">*</span><span class="st"> </span>geschl, <span class="dt">print =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <p>Table 31: <strong>Levene's Test</strong> for Homogeneity of Variance (<strong>Brown-Forsythe</strong> Adaption)</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Term</th>
-<th style="text-align: center;">df</th>
-<th style="text-align: center;">F</th>
-<th style="text-align: center;">p</th>
+<th align="center">Term</th>
+<th align="center">df</th>
+<th align="center">F</th>
+<th align="center">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">jahrgang:geschl</td>
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">0.61</td>
-<td style="text-align: center;">0.69</td>
+<td align="center">jahrgang:geschl</td>
+<td align="center">5</td>
+<td align="center">0.61</td>
+<td align="center">0.69</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Residuals</td>
-<td style="text-align: center;">244</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td align="center">Residuals</td>
+<td align="center">244</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
 <p><br></p>
-</section>
-</section>
+</div>
+</div>
 
 
 

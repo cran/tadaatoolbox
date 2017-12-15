@@ -1,41 +1,41 @@
 #' Extended Pairwise t-Tests
 #'
-#' This is an extension of \link[stats]{pairwise.t.test} that's meant to deal with
+#' This is an extension of [stats::pairwise.t.test] that's meant to deal with
 #' interactions our of the box, while also performing pairwise tests for the primary terms.
-#' The output of the function is modeled after \link[stats]{TukeyHSD}, unfortunately
+#' The output of the function is modeled after [stats::TukeyHSD], unfortunately
 #' without confidence intervals or test statistic though.
-#' @param data A \code{data.frame} containing the variables.
+#' @param data A `data.frame` containing the variables.
 #' @param response The response variable, i.e. the dependent numeric vector.
-#' @param group1 The grouping variables, typically a \code{factor}.
+#' @param group1 The grouping variables, typically a `factor`.
 #' @param group2 (Optional) second grouping variable.
-#' @param p.adjust The p-adjustment method, see \link[stats]{p.adjust.methods}, passed
-#' to \link[stats]{pairwise.t.test}. Additionally, \code{sidak} supported as a
-#' method not supported by \link[stats]{p.adjust}, as is \code{sidakSD} for the
+#' @param p.adjust The p-adjustment method, see [stats::p.adjust.methods], passed
+#' to [stats::pairwise.t.test]. Additionally, `sidak` is supported as a
+#' method, which is not the case with [stats::p.adjust], as is `sidakSD` for the
 #' Sidak step-down procedure.
-#' @param paired Defaults to \code{FALSE}, also passed to \link[stats]{pairwise.t.test}.
-#' @param pool.sd Defaults to the inverse of \code{paired}, passed
-#' to \link[stats]{pairwise.t.test}.
-#' @param alternative Defaults to \code{two.sided}, also passed to \link[stats]{pairwise.t.test}.
-#' @param print Print method, defaults to \code{df} for \code{data.frame} output, otherwise
-#' passed to \link[pixiedust]{sprinkle_print_method}.
+#' @param paired Defaults to `FALSE`, also passed to [stats::pairwise.t.test].
+#' @param pool.sd Defaults to the inverse of `paired`, passed
+#' to [stats::pairwise.t.test].
+#' @param alternative Defaults to `two.sided`, also passed to [stats::pairwise.t.test].
+#' @param print Print method, defaults to `df` for `data.frame` output, otherwise
+#' passed to [pixiedust::sprinkle_print_method].
 #' @importFrom broom tidy
 #' @import pixiedust
 #' @import stats
-#' @return A \code{data.frame} with columns \code{term}, \code{comparison} and \code{adj.p.value}.
+#' @return A `data.frame` with columns `term`, `comparison` and `adj.p.value`.
 #' @export
 #' @family Tadaa-functions
-#' @seealso \code{\link{tadaa_pairwise_tukey}}, \code{\link{tadaa_pairwise_gh}}
-#' @note The adjustment method is applied within each \code{term}, meaning that the number of
+#' @seealso [tadaa_pairwise_tukey()], [tadaa_pairwise_gh()]
+#' @note The adjustment method is applied within each `term`, meaning that the number of
 #' pairwise t-tests counted for the adjustment is only equal to the number of rows
-#' per \code{term} of the output.
+#' per `term` of the output.
 #' The additional Sidak adjustment method uses the following method:
-#' \code{p_adj <- 1 - pbinom(q = 0, size = length(p_values), prob = p_values)}
+#' `p_adj <- 1 - pbinom(q = 0, size = length(p_values), prob = p_values)`
 #' And is sometimes preferred over Bonferroni.
-#' The Sidak-like (1987) step-down procedure (\code{sidakSD}) is an improvement
+#' The Sidak-like (1987) step-down procedure (`sidakSD`) is an improvement
 #' over the Holm's (1979) step-down procedure.
 #'
-#' @references \url{https://stats.stackexchange.com/questions/20825/sidak-or-bonferroni}
-#' @references \url{https://rdrr.io/rforge/mutoss/man/SidakSD.html}
+#' @references https://stats.stackexchange.com/questions/20825/sidak-or-bonferroni
+#' @references https://rdrr.io/rforge/mutoss/man/SidakSD.html
 #' @examples
 #' tadaa_pairwise_t(ngo, deutsch, jahrgang, geschl, p.adjust = "none", print = "console")
 #' tadaa_pairwise_t(ngo, deutsch, jahrgang, geschl, p.adjust = "bonf", print = "console")
@@ -133,7 +133,7 @@ tadaa_pairwise_t <- function(data, response, group1, group2 = NULL,
     return(test)
   } else {
     output <- pixiedust::dust(test)
-    output <- pixiedust::sprinkle(output, cols = "adj.p.value", fn = quote(pval_string(value)))
+    output <- pixiedust::sprinkle(output, cols = "adj.p.value", fn = quote(tadaatoolbox::pval_string(value)))
     output <- pixiedust::sprinkle_colnames(output, adj.p.value = "p (adj.)")
     #output <- pixiedust::sprinkle_table(output, cols = 1, caption = "", part = "head")
   }
@@ -146,7 +146,7 @@ tadaa_pairwise_t <- function(data, response, group1, group2 = NULL,
 }
 
 #' Sidak setp-down procedure
-#' @references \url{https://github.com/Bioconductor-mirror/multtest/blob/master/R/mt.basic.R#L81-L88}
+#' @references https://github.com/Bioconductor-mirror/multtest/blob/master/R/mt.basic.R#L81-L88
 #' @keywords internal
 sidak_sd <- function(pvals) {
   m       <- length(pvals)

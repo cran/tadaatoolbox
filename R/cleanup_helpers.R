@@ -1,11 +1,11 @@
 #' Delete cases with set amount of missing values
 #'
-#' @param df A \code{data.frame},
-#' @param n Number of \code{NAs} allowed, defaults to \code{ncol(df) - 1}.
+#' @param df A `data.frame`,
+#' @param n Number of `NAs` allowed, defaults to `ncol(df) - 1`.
 #'
-#' @return A filtered version of the input \code{data.frame}.
+#' @return A filtered version of the input `data.frame`.
 #' @export
-#' @note Adapted from \url{http://stackoverflow.com/a/30461945/409362}.
+#' @note Adapted from http://stackoverflow.com/a/30461945/409362.
 #' @examples
 #' \dontrun{
 #' df <- data.frame(x = sample(c(1:10, NA), 10),
@@ -22,30 +22,6 @@ delete_na <- function(df, n = ncol(df) - 1) {
   logindex <- apply(log, 1, function(x) sum(x) <= n)
 
   return(df[logindex, ])
-}
-
-#' Convert all labels to factor variables
-#'
-#' @param df A \code{data.frame}
-#'
-#' @return An identical \code{data.frame} with labelled data converted to factors
-#' @export
-#' @importFrom sjlabelled is_labelled
-#' @importFrom haven as_factor
-#' @examples
-#' \dontrun{
-#' data %<>% labels_to_factor
-#' }
-labels_to_factor <- function(df) {
-
-  .Deprecated("Use haven::as_factor. It's basically the same but better.")
-
-  for (column in names(df)) {
-    if (sjlabelled::is_labelled(df[[column]])) {
-      df[[column]] <- haven::as_factor(df[[column]])
-    }
-  }
-  return(df)
 }
 
 #' Re-label a vector after subsetting
@@ -65,9 +41,9 @@ drop_labels <- function(x) {
 #' Easy p-value formatting
 #'
 #' @param pv A p-value in numeric form.
-#' @return A formatted \code{character} representation of the input value.
+#' @return A formatted `character` representation of the input value.
 #' @export
-#' @note Simplified version of \link[pixiedust]{pvalString} which considers \code{< 0.05}.
+#' @note Simplified version of [pixiedust::pvalString] which considers `< 0.05`.
 #' @examples
 #' pv <- c(.9, .2, .049, .009, .000003)
 #' pval_string(pv)

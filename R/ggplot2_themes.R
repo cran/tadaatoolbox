@@ -1,13 +1,14 @@
 #' ggplot2 theme to fit the readthedown Rmd format
 #'
-#' A ggplot theme to fit \code{\link[rmdformats]{readthedown}} in terms of background color and
+#' A ggplot theme to fit `rmdformats::readthedown` in terms of background color and
 #' dark grid lines.
-#' @param base_size Base text size, defaults to \code{12}.
-#' @param base_family Base text family. Use \code{"Roboto Slab"} to match the \code{readthedown}
-#' headers, or \code{"Lato"} for the body style.
-#' @param bg Background color, defaults to \code{\link[rmdformats]{readthedown}}'s background,
-#' \code{#fcfcfc}
-#' @param axis_emph Which axis to emphasize visually (black lines). One of \code{"x", "y", "xy", NULL}.
+#' @param base_size Base text size, defaults to `12`.
+#' @param base_family Base text family. Use `"Roboto Slab"` to match the `readthedown`
+#' headers, or `"Lato"` for the body style.
+#' @param bg Background color, defaults to `rmdformats::readthedown`'s background,
+#' `#fcfcfc`
+#' @param axis_emph Which axis to emphasize visually (black lines). One of `"x", "y", "xy", NULL`.
+#' @param ... Other arguments passed to [ggplot2::theme()]
 #' @import ggplot2
 #' @return A ggplot2 theme
 #' @export
@@ -21,7 +22,7 @@
 #' p + theme_readthedown(base_family = "Lato")
 #' p + theme_readthedown(base_family = "Roboto Slab", axis_emph = "x")
 #' }
-theme_readthedown <- function(base_size = 12, base_family = "", bg = "#fcfcfc", axis_emph = "xy") {
+theme_readthedown <- function(base_size = 12, base_family = "", bg = "#fcfcfc", axis_emph = "xy", ...) {
   template_background <- ggplot2::element_rect(fill = bg, color = bg)
 
   result <- ggplot2::theme_grey(base_size = base_size, base_family = base_family) %+replace%
@@ -32,7 +33,8 @@ theme_readthedown <- function(base_size = 12, base_family = "", bg = "#fcfcfc", 
           plot.caption      = element_text(hjust = 1, vjust = 0, size = rel(.7)),
           axis.title.x      = element_text(hjust = 0, margin = margin(t = 10)),
           strip.placement   = "outside",
-          strip.background  = element_blank())
+          strip.background  = element_blank(),
+          ...)
 
   if (axis_emph == "x") {
     result <- result +

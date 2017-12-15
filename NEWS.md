@@ -1,10 +1,23 @@
-# tadaatoolbox 0.14.0 (GitHub)
+# tadaatoolbox 0.15.0 (GitHub)
+
+- Fix error in SEM calculation in `tadaa_one_sample` for t-tests
+- Make sure `tadaa_`-test functions use `tadaatoolbox::pval_string` instead of the `pixiedust` version
+- Remove recoded `leist` var from `ngo`, as it should be computed from `leistung` by students.
+- Move `cowplot` from `Imports` to `Suggests` because whe only need it in one function, *sometimes*.
+- More compact table output in `tadaa_nom` and `tadaa_ord`.
+
+## Removals
+
+- `[tadaa_]likertize` is removed. Use `sjmisc::split_var`.
+- `labels_to_factor` is removed because various `as_factor`s exist.
+
+# tadaatoolbox 0.14.0 (CRAN)
 
 - Silence warnings in functions using `chisq.test`
 - Add `ord_tau` to calculate _all_ the Taus
     - Append them on `tadaa_ord`
 
-# tadaatoolbox 0.13.0 (CRAN)
+# tadaatoolbox 0.13.0
 
 ## New Features
 

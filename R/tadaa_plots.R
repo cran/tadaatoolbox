@@ -2,30 +2,31 @@
 #'
 #' Easily generate interaction plots of two nominal grouping
 #' variables and a numeric response variable.
-#' @param data A \code{data.frame}.
+#' @param data A `data.frame`.
 #' @param response Response variable.
 #' @param group1 First grouping variable.
 #' @param group2 Second grouping variable.
-#' @param grid If \code{TRUE}, the resulting graphs will be arranged in a grid
-#' via \link[cowplot]{plot_grid}.
-#' @param brewer_palette The name of the \link[RColorBrewer]{RColorBrewer} palette to use,
-#' defaults to \code{Set1}.
-#' @param labels Labels used for the plots when printed in a grid (\code{grid = TRUE}),
-#' defaults to \code{c("A", "B")}.
-#' @param show_n If \code{TRUE}, displays N in plot subtitle.
-#' @param print Default is \code{TRUE}, set \code{FALSE} to suppress automatic printing.
+#' @param grid If `TRUE`, the resulting graphs will be arranged in a grid
+#' via [cowplot::plot_grid].
+#' @param brewer_palette The name of the `RColorBrewer` palette to use,
+#' defaults to `Set1`.
+#' @param labels Labels used for the plots when printed in a grid (`grid = TRUE`),
+#' defaults to `c("A", "B")`.
+#' @param show_n If `TRUE`, displays N in plot subtitle.
+#' @param print Default is `TRUE`, set `FALSE` to suppress automatic printing.
 #' Useful if you intend to further modify the outpur plots.
-#' @return Invisible: A list with two ggplot2 objects named \code{p1} and \code{p2}.
-#' If \code{print = TRUE}: Printed: The one or two ggplot2 objects, depending on \code{grid}.
+#' @return Invisible: A list with two ggplot2 objects named `p1` and `p2`.
+#' If `print = TRUE`: Printed: The one or two ggplot2 objects, depending on `grid`.
 #' @export
 #' @family Tadaa-plot functions
 #' @import ggplot2
-#' @importFrom cowplot plot_grid
 #' @examples
+#' \dontrun{
 #' tadaa_int(ngo, stunzahl, jahrgang, geschl)
 #'
-#' # As grid
+#' # As grid, if cowplot is installed
 #' tadaa_int(ngo, stunzahl, jahrgang, geschl, grid = TRUE)
+#' }
 tadaa_int <- function(data, response, group1, group2, grid = FALSE,
                       brewer_palette = "Set1", labels = c("A", "B"),
                       show_n = FALSE, print = TRUE) {
@@ -74,6 +75,9 @@ tadaa_int <- function(data, response, group1, group2, grid = FALSE,
       print(p1)
       print(p2)
     } else {
+      if (!requireNamespace("cowplot")) {
+        stop("Sorry, you need to install cowplot for this to work.")
+      }
       print(cowplot::plot_grid(p1, p2, align = "h", labels = labels))
     }
   }
@@ -85,11 +89,11 @@ tadaa_int <- function(data, response, group1, group2, grid = FALSE,
 #' Grouping design balance
 #'
 #' Easily generate heatmaps to show how well balanced groups are designed, e.g. for ANOVA.
-#' @param data A \code{data.frame}
+#' @param data A `data.frame`
 #' @param group1 The grouping variable on the x-axis
 #' @param group2 The grouping variable on the y-axis
-#' @param palette The \link[viridis]{viridis} color palette to use; \code{c("A", "B", "C", "D")},
-#' defaults to \code{"D"}
+#' @param palette The [viridis::viridis] color palette to use; `c("A", "B", "C", "D")`,
+#' defaults to `"D"`
 #' @param annotate Should the n of each group be displayed in each cell of the heatmap?
 #' @return A ggplot2 object
 #' @export
@@ -130,11 +134,11 @@ tadaa_balance <- function(data, group1, group2, palette = "D", annotate = TRUE) 
 
 #' Means with Errorbars
 #'
-#' @param data A \code{data.frame}
+#' @param data A `data.frame`
 #' @param response Response variable, numeric.
-#' @param group Grouping variable, ideally a \code{factor}.
-#' @param brewer_palette Optional: The name of the \link[RColorBrewer]{RColorBrewer} palette to use,
-#' defaults to \code{Set1}. Use \code{NULL} for no brewer palette.
+#' @param group Grouping variable, ideally a `factor`.
+#' @param brewer_palette Optional: The name of the `RColorBrewer`` palette to use,
+#' defaults to `Set1`. Use `NULL` for no brewer palette.
 #' @return A ggplot2 object.
 #' @export
 #' @family Tadaa-plot functions
@@ -161,18 +165,18 @@ tadaa_mean_ci <- function(data, response, group, brewer_palette = "Set1") {
 
 #' Plot TukeyHSD Results as Errorbars
 #'
-#' This is a simple plotting template that takes the \link[broom]{tidy}'d output of
-#' \link[stats]{TukeyHSD} or alternatively the \code{print = "df"} output
-#' of \link{tadaa_pairwise_tukey} and plots it nicely with error bars.
-#' @param data The \link[broom]{tidy}'d output of \link[stats]{TukeyHSD}.
+#' This is a simple plotting template that takes the [broom::tidy]'d output of
+#' [stats::TukeyHSD] or alternatively the `print = "df"` output
+#' of [tadaa_pairwise_tukey] and plots it nicely with error bars.
+#' @param data The [broom::tidy]'d output of [stats::TukeyHSD].
 #' @inheritParams tadaa_mean_ci
-#' @return A \link{ggplot2} object.
+#' @return A [ggplot2] object.
 #' @export
 #' @import ggplot2
 #' @importFrom dplyr arrange
 #' @family Tadaa-plot functions
-#' @note The \code{alpha} of the error bars is set to \code{0.25} if the comparison
-#' is not significant, and \code{1} otherwise. That's neat.
+#' @note The `alpha` of the error bars is set to `0.25` if the comparison
+#' is not significant, and `1` otherwise. That's neat.
 #' @examples
 #' tests <- tadaa_pairwise_tukey(data = ngo, deutsch, jahrgang, geschl, print = "df")
 #' tadaa_plot_tukey(tests)

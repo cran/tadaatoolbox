@@ -1,10 +1,10 @@
 #' Simple Chi^2
 #'
-#' This is a very simple wrapper for \link{chisq.test}.
-#' @param x Dependent variable. Alternatively a \code{table}.
+#' This is a very simple wrapper for [stats::chisq.test].
+#' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
-#' @param correct Apply correction, passed to \code{chisq.test}.
-#' @return A \code{numeric} value
+#' @param correct Apply correction, passed to `chisq.test`.
+#' @return A `numeric` value
 #' @export
 #' @import stats
 #' @note The warning message in case of low samples size and possibly incorrect
@@ -21,11 +21,11 @@ nom_chisqu <- function(x, y = NULL, correct = FALSE){
 
 #' Phi coefficient
 #'
-#' Very simple wrapper for \link[vcd]{assocstats}.
-#' @param x Dependent variable. Alternatively a \code{table}.
+#' Very simple wrapper for [vcd::assocstats].
+#' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #'
-#' @return \code{numeric} value
+#' @return `numeric` value
 #' @export
 #' @importFrom vcd assocstats
 #' @examples
@@ -39,11 +39,11 @@ nom_phi <- function(x, y = NULL){
 
 #' Cramer's V
 #'
-#' Very simple wrapper for \link[vcd]{assocstats}.
-#' @param x Dependent variable. Alternatively a \code{table}.
+#' Very simple wrapper for [vcd::assocstats].
+#' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #'
-#' @return \code{numeric} value
+#' @return `numeric` value
 #' @export
 #' @importFrom vcd assocstats
 #' @examples
@@ -57,11 +57,11 @@ nom_v <- function(x, y = NULL){
 
 #' Contingency Coefficient C
 #'
-#' Very simple wrapper for \link[vcd]{assocstats}.
-#' @param x Dependent variable. Alternatively a \code{table}.
+#' Very simple wrapper for [vcd::assocstats].
+#' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #'
-#' @return \code{numeric} value
+#' @return `numeric` value
 #' @export
 #' @importFrom vcd assocstats
 #' @examples
@@ -75,13 +75,13 @@ nom_c <- function(x, y = NULL){
 
 #' Lambda
 #'
-#' Very simple wrapper for \link[ryouready]{nom.lambda}.
-#' @param x Dependent variable. Alternatively a \code{table}.
+#' Very simple wrapper for [ryouready::nom.lambda].
+#' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
-#' @param symmetric If \code{TRUE}, symmetric lambda is returned. Default is \code{FALSE}.
-#' @param reverse If \code{TRUE}, row and column variable are switched.
+#' @param symmetric If `TRUE`, symmetric lambda is returned. Default is `FALSE`.
+#' @param reverse If `TRUE`, row and column variable are switched.
 #'
-#' @return \code{numeric} value
+#' @return `numeric` value
 #' @export
 #' @importFrom ryouready nom.lambda
 #' @examples
@@ -101,11 +101,11 @@ nom_lambda <- function(x, y = NULL, symmetric = FALSE, reverse = FALSE){
 
 #' Get all the nominal stats
 #'
-#' @param x Dependent variable. Alternatively a \code{table}.
+#' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #' @param round Ho many digits should be rounded. Default is 2.
-#' @param print Print method. Passed to \link[pixiedust]{sprinkle_print_method} as of now.
-#' @return A \code{dust} object, depending on \code{print}.
+#' @param print Print method. Passed to [pixiedust::sprinkle_print_method] as of now.
+#' @return A `dust` object, depending on `print`.
 #' @export
 #' @import pixiedust
 #' @family Tadaa-functions
@@ -122,16 +122,16 @@ tadaa_nom <- function(x, y = NULL, round = 2, print = "console"){
   lmbd_y <- round(nom_lambda(x, reverse = T), round)
   lmbd_s <- round(nom_lambda(x, symmetric = T), round)
 
-  ret <- data.frame("chisq" = chisq, "cv" = v, "c" = cc,
+  ret <- data.frame("chisq" = chisq, "cv" = v,
                     "lmbd_x" = lmbd_x, "lmbd_y" = lmbd_y,
-                    "lmbd_s" = lmbd_s)
+                    "lmbd_s" = lmbd_s, "c" = cc)
 
   if (print == "markdown") {
     retprint <- pixiedust::sprinkle_colnames(pixiedust::dust(ret), chisq = "$\\chi^2$",
                                              cv = "Cramer's V",
-                                             lmbd_x = "Lambda (x dep.)",
-                                             lmbd_y = "Lambda (y dep.)",
-                                             lmbd_s = "Lambda (sym.)")
+                                             lmbd_x = "$\\lambda_x$",
+                                             lmbd_y = "$\\lambda_y$",
+                                             lmbd_s = "$\\lambda_{xy}$")
   } else {
     retprint <- pixiedust::sprinkle_colnames(pixiedust::dust(ret), chisq = "Chi^2",
                                              cv = "Cramer's V",

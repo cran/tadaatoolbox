@@ -18,9 +18,9 @@ tadaa_int(data, response, group1, group2, grid = FALSE,
 \item{group2}{Second grouping variable.}
 
 \item{grid}{If \code{TRUE}, the resulting graphs will be arranged in a grid
-via \link[cowplot]{plot_grid}.}
+via \link[cowplot:plot_grid]{cowplot::plot_grid}.}
 
-\item{brewer_palette}{The name of the \link[RColorBrewer]{RColorBrewer} palette to use,
+\item{brewer_palette}{The name of the \code{RColorBrewer} palette to use,
 defaults to \code{Set1}.}
 
 \item{labels}{Labels used for the plots when printed in a grid (\code{grid = TRUE}),
@@ -40,10 +40,12 @@ Easily generate interaction plots of two nominal grouping
 variables and a numeric response variable.
 }
 \examples{
+\dontrun{
 tadaa_int(ngo, stunzahl, jahrgang, geschl)
 
-# As grid
+# As grid, if cowplot is installed
 tadaa_int(ngo, stunzahl, jahrgang, geschl, grid = TRUE)
+}
 }
 \seealso{
 Other Tadaa-plot functions: \code{\link{tadaa_balance}},

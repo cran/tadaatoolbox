@@ -1,20 +1,20 @@
 #' Tadaa, one-sample tests!
 #'
-#' If \code{sigma} is omitted, the function will just perform a one-sample \link[stats]{t.test},
-#' but if \code{sigma} is provided, a z-test is performed. It basically works the same way,
+#' If `sigma` is omitted, the function will just perform a one-sample [stats::t.test],
+#' but if `sigma` is provided, a z-test is performed. It basically works the same way,
 #' except that we pretend we know the population sigma and use the normal distribution
 #' for comparison.
-#' @param data A \code{data.frame} (optional).
-#' @param x A numeric vector or bare column name of \code{data}.
+#' @param data A `data.frame` (optional).
+#' @param x A numeric vector or bare column name of `data`.
 #' @param mu The true mean (\eqn{\mu}) to test for.
 #' @param sigma Population sigma. If supplied, a z-test is performed,
-#' otherwise a one-sample \link[stats]{t.test} is performed.
-#' @param na.rm Whether to drop \code{NA} values. Default is \code{FALSE}.
-#' @param conf.level Confidence level used for power and CI, default is \code{0.95}.
-#' @param print Print method, default \code{df}: A regular \code{data.frame}.
-#' Otherwise passed to \link[pixiedust]{sprinkle_print_method} for fancyness.
+#' otherwise a one-sample [stats::t.test] is performed.
+#' @param na.rm Whether to drop `NA` values. Default is `FALSE`.
+#' @param conf.level Confidence level used for power and CI, default is `0.95`.
+#' @param print Print method, default `df`: A regular `data.frame`.
+#' Otherwise passed to [pixiedust::sprinkle_print_method] for fancyness.
 #' @inheritParams tadaa_t.test
-#' @return A \code{data.frame} by default, otherwise \code{dust} object, depending on \code{print}.
+#' @return A `data.frame` by default, otherwise `dust` object, depending on `print`.
 #' @import pixiedust
 #' @import stats
 #' @family Tadaa-functions
@@ -49,7 +49,7 @@ tadaa_one_sample <- function(data = NULL, x, mu, sigma = NULL, direction = "two.
     results <- broom::tidy(t.test(x = x, mu = mu, direction = direction))
 
     # Add SE because why not
-    results$se <- results$estimate/results$statistic
+    results$se <- sd(x, na.rm = TRUE)/sqrt(length(x))
 
     # Effect size
     results$d <- (mean_x - mu) / sd(x, na.rm = na.rm)
@@ -130,7 +130,7 @@ tadaa_one_sample <- function(data = NULL, x, mu, sigma = NULL, direction = "two.
     } else if ("se" %in% names(results)) {
       output <- pixiedust::sprinkle_colnames(output, se        = "SE")
     }
-    output <- pixiedust::sprinkle(output, col = "p.value", fn = quote(pval_string(value)))
+    output <- pixiedust::sprinkle(output, col = "p.value", fn = quote(tadaatoolbox::pval_string(value)))
     output <- pixiedust::sprinkle(output, round = 2)
     output <- pixiedust::sprinkle_print_method(output, print_method = print)
 
