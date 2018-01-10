@@ -14,7 +14,6 @@
 #' @importFrom broom tidy
 #' @importFrom nortest ad.test
 #' @importFrom nortest pearson.test
-#' @importFrom dplyr bind_rows
 #' @family Tadaa-functions
 #' @export
 #' @examples
@@ -29,20 +28,11 @@
 #' tadaa_normtest(method = "pearson", print = "console")
 #' }
 tadaa_normtest <- function(data, method = "ad",
-                           print = c("df", "console", "html", "markdown"), ...){
-
+                           print = c("df", "console", "html", "markdown"), ...) {
   print <- match.arg(print)
 
-  if (print == "df" & length(method) > 1 & length(method) <= 3) {
-    res <- dplyr::bind_rows(lapply(method, function(x) {
-      tadaa_normtest(data, method = x)
-    }))
-    return(res)
-  }
-
-  vars    <- names(data)
-  results <- lapply(data, function(x){
-
+  vars <- names(data)
+  results <- lapply(data, function(x) {
     res <- if (method == "ad") {
       res <- ad.test(x)
     } else if (method == "shapiro") {
@@ -58,9 +48,14 @@ tadaa_normtest <- function(data, method = "ad",
     res <- tidy(res)
     return(res)
   })
-  results          <- dplyr::bind_rows(results)
-  results$variable <- as.character(vars)
-  results          <- results[c(ncol(results), 1:(ncol(results) - 1))]
+
+  results <- data.frame(
+    variable = as.character(vars),
+    statistic = sapply(results, "[[", 1),
+    p.value = sapply(results, "[[", 2),
+    method = sapply(results, "[[", 3)
+  )
+  rownames(results) <- NULL
 
   if (print == "df") {
     return(results)
@@ -96,16 +91,15 @@ tadaa_normtest <- function(data, method = "ad",
 #' tadaa_levene(ngo, deutsch ~ jahrgang * geschl, print = "console")
 tadaa_levene <- function(data, formula, center = "median",
                          print = c("df", "console", "html", "markdown")) {
-
   print <- match.arg(print)
 
   # Labels for groups
   factors <- attr(terms(formula), "term.labels")
   factors <- factors[attr(terms(formula), "order") == 1]
-  groups  <- paste0(factors, collapse = ":")
+  groups <- paste0(factors, collapse = ":")
 
   # Actual test
-  test   <- broom::tidy(car::leveneTest(formula, data = data, center = center))
+  test <- broom::tidy(car::leveneTest(formula, data = data, center = center))
 
   # Label terms
   test$term <- c(groups, "Residuals")
@@ -122,10 +116,12 @@ tadaa_levene <- function(data, formula, center = "median",
     output <- pixiedust::dust(test, caption = method)
     output <- pixiedust::sprinkle_table(output, halign = "center", part = "head")
     output <- pixiedust::sprinkle(output, col = "p.value", fn = quote(pval_string(value)))
-    output <- pixiedust::sprinkle_colnames(output,
-                                           term      = "Term",
-                                           statistic = "F",
-                                           p.value   = "p")
+    output <- pixiedust::sprinkle_colnames(
+      output,
+      term = "Term",
+      statistic = "F",
+      p.value = "p"
+    )
     output <- pixiedust::sprinkle(output, round = 2, na_string = "")
     output <- pixiedust::sprinkle_print_method(output, print_method = print)
 

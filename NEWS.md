@@ -1,4 +1,28 @@
-# tadaatoolbox 0.15.0 (GitHub)
+# tadaatoolbox 0.16.0
+
+## Fixes & Features
+
+- Add `ord_pairs` to retrieve $N_c$, $N_d$, ties and total number of pairs for contingency tables. Internals for this function are straight up copied from [this gist](https://gist.github.com/marcschwartz/3665743).
+- Add `etasq` in case you want to show students what $\eta^2$ is without having to explain ANOVA.
+- Fix `ord_somers_d` not returning the correct value for `symmetric = TRUE`
+- Removed `drop_labels` because `sjlabelled::zap_labels` is a thing
+
+## Internals
+
+- Eliminate `ryouready` dependency, in favor of the more versatile `DescTools` package:
+    - `nom_lambda`: Use `DescTools::Lambda`
+    - `ord_gamma`: Use `DescTools::GoodmanKruskalGamma`
+    - `ord_somers_d`: Use `DescTools::SomersDelta`
+- Eliminate `vcd` dependency, also in favor of `DescTools`.
+- (The `DescTools` functions are very similar to what the wrappers do, so the wrappers might be removed in the future.)
+- Eliminate `lazyeval` dependency in `tadaa_int` by being better at `ggplot2`.
+- Eliminate `dplyr` dependency by being better at R.
+- Eliminate `haven` dependency by not re-exporting `as_factor` anymore ¯\\\_(ツ)_/¯
+- Eliminate `sjmisc` depencency because why did we depend on that again?
+- Eliminate `sjlabelled` dependency (only used for re-exports).
+- Eliminate `lsr` dependency in favor of, you guessed it, `DescTools` for eta in `tadaa_aov`.
+
+# tadaatoolbox 0.15.0
 
 - Fix error in SEM calculation in `tadaa_one_sample` for t-tests
 - Make sure `tadaa_`-test functions use `tadaatoolbox::pval_string` instead of the `pixiedust` version
@@ -11,7 +35,7 @@
 - `[tadaa_]likertize` is removed. Use `sjmisc::split_var`.
 - `labels_to_factor` is removed because various `as_factor`s exist.
 
-# tadaatoolbox 0.14.0 (CRAN)
+# tadaatoolbox 0.14.0
 
 - Silence warnings in functions using `chisq.test`
 - Add `ord_tau` to calculate _all_ the Taus

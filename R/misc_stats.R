@@ -5,8 +5,7 @@
 #' @param x A `vector` with numeric data.
 #' @param reduce Since `mode` can be of length > 1, this option pastes the result into a
 #' single character value.
-#' @param as_character Always return a character. `TRUE` by default, or [dplyr::summarize].
-#' will be very unpleased.
+#' @param as_character Always return a character. `TRUE` by default.
 #' @return A `vector` of length 1 of type `numeric` or `character`, depending
 #' on input.
 #' @export
@@ -18,8 +17,8 @@
 #' # Or for nominal data
 #' x <- structure(c(2L, 1L, 2L, 2L, 2L, 1L), .Label = c("Ja", "Nein"), class = "factor")
 #' modus(x)
-#'}
-modus <- function(x, as_character = TRUE, reduce = TRUE){
+#' }
+modus <- function(x, as_character = TRUE, reduce = TRUE) {
   mode <- names(table(x)[table(x) == max(table(x))])
 
   if (reduce & length(mode) > 1) {
@@ -53,4 +52,24 @@ modus <- function(x, as_character = TRUE, reduce = TRUE){
 #' round(c(mean = mean(z_vals), sd = sd(z_vals)), 2)
 z <- function(x) {
   (x - mean(x, na.rm = TRUE)) / stats::sd(x, na.rm = TRUE)
+}
+
+#' Just eta^2.
+#'
+#' Thin wrapper for [`DescTools::EtaSq`] to retrieve $eta^2$ for a simple use case
+#' without having to fit an `aov` model beforehand.
+#' Only use this for a simple one-way design, e.g. only one independent variable.
+#' @param formula The model formula for [`stats::aov`].
+#' @param data The `data.frame`.
+#'
+#' @return A single numeric value
+#' @export
+#' @importFrom DescTools EtaSq
+#'
+#' @examples
+#' etasq(stunzahl ~ jahrgang, ngo)
+etasq <- function(formula, data) {
+  model <- aov(formula = formula, data = data)
+  ret <- DescTools::EtaSq(model, type = 1)
+  ret[1]
 }

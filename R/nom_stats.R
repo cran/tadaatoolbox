@@ -11,7 +11,7 @@
 #' approximation is suppressed silently.
 #' @examples
 #' nom_chisqu(ngo$abschalt, ngo$geschl)
-nom_chisqu <- function(x, y = NULL, correct = FALSE){
+nom_chisqu <- function(x, y = NULL, correct = FALSE) {
   if (is.table(x)) {
     as.numeric(suppressWarnings(chisq.test(x = x, correct = correct)$statistic))
   } else {
@@ -21,61 +21,61 @@ nom_chisqu <- function(x, y = NULL, correct = FALSE){
 
 #' Phi coefficient
 #'
-#' Very simple wrapper for [vcd::assocstats].
+#' Very simple wrapper for [DescTools::Phi].
 #' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #'
 #' @return `numeric` value
 #' @export
-#' @importFrom vcd assocstats
+#' @importFrom DescTools Phi
 #' @examples
 #' nom_phi(ngo$abschalt, ngo$geschl)
-nom_phi <- function(x, y = NULL){
+nom_phi <- function(x, y = NULL) {
   if (!is.table(x)) {
     x <- table(x, y)
   }
-  vcd::assocstats(x)$phi
+  DescTools::Phi(x)
 }
 
 #' Cramer's V
 #'
-#' Very simple wrapper for [vcd::assocstats].
+#' Very simple wrapper for [DescTools::CramerV].
 #' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #'
 #' @return `numeric` value
 #' @export
-#' @importFrom vcd assocstats
+#' @importFrom DescTools CramerV
 #' @examples
 #' nom_v(ngo$abschalt, ngo$geschl)
-nom_v <- function(x, y = NULL){
+nom_v <- function(x, y = NULL) {
   if (!is.table(x)) {
     x <- table(x, y)
   }
-  vcd::assocstats(x)$cramer
+  DescTools::CramerV(x)
 }
 
 #' Contingency Coefficient C
 #'
-#' Very simple wrapper for [vcd::assocstats].
+#' Very simple wrapper for [DescTools::ContCoef].
 #' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #'
 #' @return `numeric` value
 #' @export
-#' @importFrom vcd assocstats
+#' @importFrom DescTools ContCoef
 #' @examples
 #' nom_c(ngo$abschalt, ngo$geschl)
-nom_c <- function(x, y = NULL){
+nom_c <- function(x, y = NULL) {
   if (!is.table(x)) {
     x <- table(x, y)
   }
-  vcd::assocstats(x)$contingency
+  DescTools::ContCoef(x)
 }
 
 #' Lambda
 #'
-#' Very simple wrapper for [ryouready::nom.lambda].
+#' Very simple wrapper for [DescTools::Lambda].
 #' @param x Dependent variable. Alternatively a `table`.
 #' @param y Independent variable
 #' @param symmetric If `TRUE`, symmetric lambda is returned. Default is `FALSE`.
@@ -83,19 +83,19 @@ nom_c <- function(x, y = NULL){
 #'
 #' @return `numeric` value
 #' @export
-#' @importFrom ryouready nom.lambda
+#' @importFrom DescTools Lambda
 #' @examples
 #' nom_lambda(ngo$abschalt, ngo$geschl)
-nom_lambda <- function(x, y = NULL, symmetric = FALSE, reverse = FALSE){
+nom_lambda <- function(x, y = NULL, symmetric = FALSE, reverse = FALSE) {
   if (!is.table(x)) {
     x <- table(x, y)
   }
   if (symmetric) {
-    ryouready::nom.lambda(x)$lambda.symmetric
+    DescTools::Lambda(x, direction = "symmetric")
   } else if (!reverse) {
-    ryouready::nom.lambda(x)$lambda.rc
+    DescTools::Lambda(x, direction = "row")
   } else {
-    ryouready::nom.lambda(x)$lambda.cr
+    DescTools::Lambda(x, direction = "column")
   }
 }
 
@@ -111,33 +111,39 @@ nom_lambda <- function(x, y = NULL, symmetric = FALSE, reverse = FALSE){
 #' @family Tadaa-functions
 #' @examples
 #' tadaa_nom(ngo$abschalt, ngo$geschl)
-tadaa_nom <- function(x, y = NULL, round = 2, print = "console"){
+tadaa_nom <- function(x, y = NULL, round = 2, print = "console") {
   if (!is.table(x)) {
     x <- table(x, y)
   }
-  chisq  <- round(nom_chisqu(x), round)
-  v      <- round(nom_v(x), round)
-  cc     <- round(nom_c(x), round)
+  chisq <- round(nom_chisqu(x), round)
+  v <- round(nom_v(x), round)
+  cc <- round(nom_c(x), round)
   lmbd_x <- round(nom_lambda(x), round)
   lmbd_y <- round(nom_lambda(x, reverse = T), round)
   lmbd_s <- round(nom_lambda(x, symmetric = T), round)
 
-  ret <- data.frame("chisq" = chisq, "cv" = v,
-                    "lmbd_x" = lmbd_x, "lmbd_y" = lmbd_y,
-                    "lmbd_s" = lmbd_s, "c" = cc)
+  ret <- data.frame(
+    "chisq" = chisq, "cv" = v,
+    "lmbd_x" = lmbd_x, "lmbd_y" = lmbd_y,
+    "lmbd_s" = lmbd_s, "c" = cc
+  )
 
   if (print == "markdown") {
-    retprint <- pixiedust::sprinkle_colnames(pixiedust::dust(ret), chisq = "$\\chi^2$",
-                                             cv = "Cramer's V",
-                                             lmbd_x = "$\\lambda_x$",
-                                             lmbd_y = "$\\lambda_y$",
-                                             lmbd_s = "$\\lambda_{xy}$")
+    retprint <- pixiedust::sprinkle_colnames(
+      pixiedust::dust(ret), chisq = "$\\chi^2$",
+      cv = "Cramer's V",
+      lmbd_x = "$\\lambda_x$",
+      lmbd_y = "$\\lambda_y$",
+      lmbd_s = "$\\lambda_{xy}$"
+    )
   } else {
-    retprint <- pixiedust::sprinkle_colnames(pixiedust::dust(ret), chisq = "Chi^2",
-                                             cv = "Cramer's V",
-                                             lmbd_x = "Lambda (x dep.)",
-                                             lmbd_y = "Lambda (y dep.)",
-                                             lmbd_s = "Lambda (sym.)")
+    retprint <- pixiedust::sprinkle_colnames(
+      pixiedust::dust(ret), chisq = "Chi^2",
+      cv = "Cramer's V",
+      lmbd_x = "Lambda (x dep.)",
+      lmbd_y = "Lambda (y dep.)",
+      lmbd_s = "Lambda (sym.)"
+    )
   }
 
   return(pixiedust::sprinkle_print_method(retprint, print))

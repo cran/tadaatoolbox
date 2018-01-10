@@ -11,7 +11,8 @@
 #' If `type = 3` and `check_contrasts = TRUE`, the `"contrasts"` of
 #' each non-ordered factor will be checked and set to `contr.sum` to ensure the function
 #' yields usable results. It is highly recommended to only use `check_contrasts = FALSE`
-#' for debugging or educational purposes.
+#' for debugging or educational purposes, or of you know what you're doing and using
+#' your own contrast matrix.
 #' @param formula Formula for model, passed to `aov`.
 #' @param data Data for model.
 #' @param show_effect_size If `TRUE` (default), effect sizes
@@ -31,7 +32,7 @@
 #' @import methods
 #' @import stats
 #' @import pixiedust
-#' @importFrom lsr etaSquared
+#' @importFrom DescTools  EtaSq
 #' @importFrom pwr pwr.f2.test
 #' @importFrom car Anova
 #' @importFrom broom tidy
@@ -48,14 +49,13 @@
 #' }
 tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power = TRUE,
                       factorize = TRUE, type = 3, check_contrasts = TRUE,
-                      print = c("df", "console", "html", "markdown")){
-
+                      print = c("df", "console", "html", "markdown")) {
   print <- match.arg(print)
 
   # Checks
-  terms  <- stats::terms(formula)
+  terms <- stats::terms(formula)
   orders <- attr(terms, "order")
-  vars   <- attr(terms, "term.labels")[orders == 1]
+  vars <- attr(terms, "term.labels")[orders == 1]
 
   if (factorize) {
     if (!all(sapply(data[vars], is.factor))) {
@@ -63,7 +63,6 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
       warning("Some independent variables are not factors, auto-converting...")
 
       for (var in non_factors) {
-
         data[[var]] <- as.factor(data[[var]])
 
         warning("Converting ", var, " to factor, please check your results")
@@ -85,7 +84,7 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
 
   # Model fitting
   base_model <- stats::aov(formula = formula, data = data)
-  effects    <- lsr::etaSquared(base_model, type = type)
+  effects    <- DescTools::EtaSq(base_model, type = type)
 
   if (type %in% c(2, 3)) {
     base_model <- car::Anova(base_model, type = type)
@@ -94,7 +93,7 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
   model <- broom::tidy(base_model)
 
   if (type %in% c(2, 3)) {
-    model$meansq <- model$sumsq/model$df
+    model$meansq <- model$sumsq / model$df
     model <- model[c("term", "df", "sumsq", "meansq", "statistic", "p.value")]
   }
   if (type == 3) {
@@ -103,19 +102,23 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
   }
 
   # Put interactions below factors
-  model <- rbind(model[!grepl(":", model$term), ],
-                 model[grepl(":", model$term), ])
+  model <- rbind(
+    model[!grepl(":", model$term), ],
+    model[grepl(":", model$term), ]
+  )
 
   # Put Residual row at the bottom
-  model <- rbind(model[model$term != "Residuals", ],
-                 model[model$term == "Residuals", ])
+  model <- rbind(
+    model[model$term != "Residuals", ],
+    model[model$term == "Residuals", ]
+  )
 
   # Append Total row
   totals <- data.frame("term" = "Total", lapply(model[-1], sum), stringsAsFactors = FALSE)
-  model  <- rbind(model, totals)
+  model <- rbind(model, totals)
 
   if (show_effect_size) {
-    effects          <- data.frame(term = rownames(effects), effects, row.names = NULL)
+    effects <- data.frame(term = rownames(effects), effects, row.names = NULL)
     effects$cohens.f <- sqrt(effects$eta.sq.part / (1 - effects$eta.sq.part))
 
     # Drop eta.sq from output, as partial eta^2 suffices
@@ -127,9 +130,11 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
   if (show_power) {
     fctr_rows <- !(model$term %in% c("Residuals", "Total"))
 
-    model$power[fctr_rows] <- pwr::pwr.f2.test(u = model$df[fctr_rows],
-                                               v = model$df[model$term == "Residuals"],
-                                               f2 = model$cohens.f[fctr_rows]^2)$power
+    model$power[fctr_rows] <- pwr::pwr.f2.test(
+      u = model$df[fctr_rows],
+      v = model$df[model$term == "Residuals"],
+      f2 = model$cohens.f[fctr_rows] ^ 2
+    )$power
   }
 
   if (print == "df") {
@@ -140,7 +145,7 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
     # Guess ANOVA type based on number of factors, assuming only 1 response
     # Length coerced to character for switch()'s default result to work
     n_factors <- as.character(length(all.vars(formula)) - 1)
-    ways      <- switch(n_factors, "1" = "One-Way", "2" = "Two-Way", "Factorial")
+    ways <- switch(n_factors, "1" = "One-Way", "2" = "Two-Way", "Factorial")
 
     method <- paste0("**", ways, " ANOVA**: Using Type ", sstype, " Sum of Squares")
 
@@ -151,23 +156,27 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
 
     # Extract Residuals and Totals and put them in the footer explicitly
     footer <- model[model$term %in% c("Residuals", "Total"), ]
-    model  <- model[!(model$term %in% c("Residuals", "Total")), ]
+    model <- model[!(model$term %in% c("Residuals", "Total")), ]
 
     output <- pixiedust::dust(model, caption = method)
     output <- pixiedust::redust(output, footer, part = "foot")
     output <- pixiedust::sprinkle(output, rows = 1, border = "top", part = "foot")
     output <- pixiedust::sprinkle_table(output, halign = "center", part = "head")
     output <- pixiedust::sprinkle(output, col = "p.value", fn = quote(tadaatoolbox::pval_string(value)))
-    output <- pixiedust::sprinkle_colnames(output,
-                                           term      = "Term",
-                                           sumsq     = "SS",
-                                           meansq    = "MS",
-                                           statistic = "F",
-                                           p.value   = "p")
+    output <- pixiedust::sprinkle_colnames(
+      output,
+      term = "Term",
+      sumsq = "SS",
+      meansq = "MS",
+      statistic = "F",
+      p.value = "p"
+    )
     if (show_effect_size) {
-      output <- pixiedust::sprinkle_colnames(output,
-                                             eta.sq.part = eta_label,
-                                             cohens.f    = "Cohen's f")
+      output <- pixiedust::sprinkle_colnames(
+        output,
+        eta.sq.part = eta_label,
+        cohens.f = "Cohen's f"
+      )
     }
     if (show_power) {
       output <- pixiedust::sprinkle_colnames(output, power = "Power")
@@ -190,8 +199,7 @@ tadaa_aov <- function(formula, data = NULL, show_effect_size = TRUE, show_power 
 #' @import stats
 #' @examples
 #' tadaa_kruskal(stunzahl ~ jahrgang, data = ngo)
-tadaa_kruskal <- function(formula, data = NULL, print = c("df", "console", "html", "markdown")){
-
+tadaa_kruskal <- function(formula, data = NULL, print = c("df", "console", "html", "markdown")) {
   print <- match.arg(print)
 
   model <- broom::tidy(kruskal.test(formula = formula, data = data))
@@ -204,11 +212,12 @@ tadaa_kruskal <- function(formula, data = NULL, print = c("df", "console", "html
 
     output <- suppressWarnings(pixiedust::dust(model, caption = method))
     output <- pixiedust::sprinkle_table(output, halign = "center", part = "head")
-    output <- pixiedust::sprinkle_colnames(output, statistic = "$\\chi^2$",
-                                           p.value = "p", parameter = "df")
+    output <- pixiedust::sprinkle_colnames(
+      output, statistic = "$\\chi^2$",
+      p.value = "p", parameter = "df"
+    )
     output <- pixiedust::sprinkle(output, col = "p.value", fn = quote(tadaatoolbox::pval_string(value)))
     output <- pixiedust::sprinkle(output, round = 2)
-
   }
 
   pixiedust::sprinkle_print_method(output, print_method = print)
