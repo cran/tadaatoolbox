@@ -7,10 +7,10 @@
 \title{tadaatoolbox: Helpers for Data Analysis and Presentation Focused on Undergrad Psychology}
 \description{
 Contains functions for the easy display of statistical tests as well as
-some convenience functions for data cleanup. It is meant to ease existing workflows
-with packages like 'sjPlot', 'dplyr', and 'ggplot2'. The primary components are the functions
-prefixed with 'tadaa_', which are built to work in an interactive environment, but also print
-tidy markdown tables powered by 'pixiedust' for the creation of 'RMarkdown' reports.
+    some convenience functions for data cleanup. It is meant to ease existing workflows
+    with packages like 'sjPlot', 'dplyr', and 'ggplot2'. The primary components are the functions
+    prefixed with 'tadaa_', which are built to work in an interactive environment, but also print
+    tidy markdown tables powered by 'pixiedust' for the creation of 'RMarkdown' reports.
 }
 \seealso{
 Useful links:
@@ -21,16 +21,17 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Lukas Burk \email{lukas@quantenbrot.de}
+\strong{Maintainer}: Lukas Burk \email{lukas@tadaa-data.de} (0000-0001-7528-3795)
 
 Authors:
 \itemize{
-  \item Tobias Anton \email{unsichtbarer@quantenbrot.de}
+  \item Tobias Anton \email{tobi@tadaa-data.de}
 }
 
 Other contributors:
 \itemize{
   \item Daniel Lüdecke \email{d.luedecke@uke.de} [contributor]
+  \item Gesa Graf \email{ggraf@uni-bremen.de} [contributor]
 }
 
 }

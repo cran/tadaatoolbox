@@ -58,10 +58,14 @@ tadaa_int <- function(data, response, group1, group2, grid = FALSE,
     x = substitute(group1), y = substitute(response),
     colour = substitute(group2)
   )) +
-    stat_summary(aes_string(group = substitute(group2)),
-                 fun.y = mean, geom = "line") +
-    stat_summary(aes_string(group = substitute(group2)),
-                 fun.y = mean, geom = "point", shape = 23, fill = "white") +
+    stat_summary(
+      aes_string(group = substitute(group2)),
+      fun.y = mean, geom = "line"
+    ) +
+    stat_summary(
+      aes_string(group = substitute(group2)),
+      fun.y = mean, geom = "point", shape = 23, fill = "white"
+    ) +
     scale_colour_brewer(palette = brewer_palette) +
     labs(
       title = title1, y = paste0("Mean ", substitute(response)),
@@ -73,10 +77,14 @@ tadaa_int <- function(data, response, group1, group2, grid = FALSE,
     x = substitute(group2), y = substitute(response),
     colour = substitute(group1)
   )) +
-    stat_summary(aes_string(group = substitute(group1)),
-                 fun.y = mean, geom = "line") +
-    stat_summary(aes_string(group = substitute(group1)),
-                 fun.y = mean, geom = "point", shape = 23, fill = "white") +
+    stat_summary(
+      aes_string(group = substitute(group1)),
+      fun.y = mean, geom = "line"
+    ) +
+    stat_summary(
+      aes_string(group = substitute(group1)),
+      fun.y = mean, geom = "point", shape = 23, fill = "white"
+    ) +
     scale_colour_brewer(palette = brewer_palette) +
     labs(
       title = title2, y = paste0("Mean ", substitute(response)),
@@ -169,7 +177,7 @@ tadaa_mean_ci <- function(data, response, group, brewer_palette = "Set1") {
     stat_summary(fun.data = "mean_ci_t", geom = "errorbar", width = 0.6, size = 1.5) +
     stat_summary(fun.y = "mean", geom = "point", size = 3, color = "black") +
     stat_summary(fun.y = "mean", geom = "point", size = 2, color = "white") +
-    guides(color = F)
+    guides(color = FALSE)
   if (!is.null(brewer_palette)) {
     p <- p + scale_color_brewer(palette = brewer_palette)
   }
@@ -196,6 +204,11 @@ tadaa_mean_ci <- function(data, response, group, brewer_palette = "Set1") {
 #' tadaa_plot_tukey(tests)
 tadaa_plot_tukey <- function(data, brewer_palette = "Set1") {
 
+  # Yields weird warnings when pkgdowning, needs more testing
+  # data$term <- gsub(":", " \u2194 ", data$term)
+  # data$comparison <- gsub(":", " & ", data$comparison)
+  # data$comparison <- gsub("-", " \u2194 ", data$comparison)
+
   data$signif <- ifelse(data$conf.high > 0 & data$conf.low < 0, "no", "yes")
 
   data <- data[order(data$term, data$estimate), ]
@@ -216,11 +229,11 @@ tadaa_plot_tukey <- function(data, brewer_palette = "Set1") {
       alpha = "signif"
     )
   ) +
-    geom_errorbar(width = .75, size = 1.25) +
-    geom_point(shape = 23, size = 1.5) +
+    geom_errorbar(width = .75, size = 1) +
+    geom_point(shape = 23, size = 1.5, fill = "white") +
     geom_hline(yintercept = 0, linetype = "dashed") +
     coord_flip() +
-    scale_alpha_manual(values = c("no" = 0.25, "yes" = 1), guide = F) +
+    scale_alpha_manual(values = c("no" = 0.25, "yes" = 1), guide = FALSE) +
     labs(
       title = "Tukey HSD Results", subtitle = "Mean Difference with 95% CI",
       x = "Compared Groups", y = "Mean Difference", color = "Term (Factor)",
