@@ -47,7 +47,7 @@ modus <- function(x, as_character = TRUE, reduce = TRUE) {
 #' @importFrom stats sd
 #'
 #' @examples
-#' x      <- rnorm(500, mean = 10, sd = 5)
+#' x <- rnorm(500, mean = 10, sd = 5)
 #' z_vals <- z(x)
 #' round(c(mean = mean(z_vals), sd = sd(z_vals)), 2)
 z <- function(x) {

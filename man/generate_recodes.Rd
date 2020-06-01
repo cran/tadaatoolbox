@@ -7,7 +7,7 @@
 generate_recodes(from, to, width = 5)
 }
 \arguments{
-\item{from, to}{A \code{numeric value} for the beginning and the end of the interval.}
+\item{from, to}{A \verb{numeric value} for the beginning and the end of the interval.}
 
 \item{width}{The width of the interval, e.g. 5 (default) for intervals 0-5.}
 }
@@ -20,7 +20,7 @@ with \link[car:recode]{car::recode}.
 }
 \examples{
 \dontrun{
-x       <- round(runif(100, 0, 100), 0)
+x <- round(runif(100, 0, 100), 0)
 recodes <- generate_recodes(0, 100, 10)
 
 library(car)

@@ -52,12 +52,7 @@ tadaa_one_sample <- function(data = NULL, x, mu, sigma = NULL, direction = "two.
 
     # Effect size
     results$d <- (mean_x - mu) / sd(x, na.rm = na.rm)
-    # Power
-    results$power <- pwr::pwr.t.test(
-      n = length(x), d = results$d,
-      type = "one.sample", alternative = direction,
-      sig.level = 1 - conf.level
-    )$power
+
     # Name statistic
     statistic_label <- "t"
   } else {
@@ -87,11 +82,6 @@ tadaa_one_sample <- function(data = NULL, x, mu, sigma = NULL, direction = "two.
 
     # Effect size
     results$d <- (mean_x - mu) / sigma
-    # Power
-    results$power <- pwr::pwr.norm.test(
-      d = results$d, n = length(x),
-      alternative = direction
-    )$power
     # Name statistic
     statistic_label <- "z"
   }
@@ -118,12 +108,12 @@ tadaa_one_sample <- function(data = NULL, x, mu, sigma = NULL, direction = "two.
     if ("parameter" %in% names(results)) {
       results <- results[c(
         "estimate", "parameter", "se", "statistic",
-        "ci", "p.value", "d", "power"
+        "ci", "p.value", "d"
       )]
     } else {
       results <- results[c(
         "estimate", "se", "statistic", "ci",
-        "p.value", "d", "power"
+        "p.value", "d"
       )]
     }
 
@@ -136,8 +126,7 @@ tadaa_one_sample <- function(data = NULL, x, mu, sigma = NULL, direction = "two.
       se = "SE",
       p.value = "p",
       ci = CI_lab,
-      d = "Cohen\\'s d",
-      power = "Power"
+      d = "Cohen\\'s d"
     )
     if ("parameter" %in% names(results)) {
       output <- pixiedust::sprinkle_colnames(output, parameter = "df")

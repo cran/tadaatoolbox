@@ -4,10 +4,15 @@
 \alias{tadaa_aov}
 \title{Tadaa, ANOVA!}
 \usage{
-tadaa_aov(formula, data = NULL, show_effect_size = TRUE,
-  show_power = TRUE, factorize = TRUE, type = 3,
-  check_contrasts = TRUE, print = c("df", "console", "html",
-  "markdown"))
+tadaa_aov(
+  formula,
+  data = NULL,
+  show_effect_size = TRUE,
+  factorize = TRUE,
+  type = 3,
+  check_contrasts = TRUE,
+  print = c("df", "console", "html", "markdown")
+)
 }
 \arguments{
 \item{formula}{Formula for model, passed to \code{aov}.}
@@ -16,9 +21,6 @@ tadaa_aov(formula, data = NULL, show_effect_size = TRUE,
 
 \item{show_effect_size}{If \code{TRUE} (default), effect sizes
 partial eta^2 and Cohen's f are appended as columns.}
-
-\item{show_power}{(Experimental) If \code{TRUE} (default), power is calculated
-via \link[pwr:pwr.f2.test]{pwr::pwr.f2.test} and appended as a column.}
 
 \item{factorize}{If \code{TRUE} (default), non-\code{factor} independent variables
 will automatically converted via \code{as.factor}, so beware of your inputs.}
@@ -36,8 +38,7 @@ A \code{data.frame} by default, otherwise \code{dust} object, depending on \code
 }
 \description{
 Performs one-, two-way or factorial ANOVA with adjustable sums of squares method and
-optionally displays effect sizes ((partial) \eqn{\eta^2}, Cohen's f) and
-power (calculated via \link[pwr:pwr.f2.test]{pwr::pwr.f2.test} to work with unbalanced designs).
+optionally displays effect sizes ((partial) \eqn{\eta^2} and Cohen's f).
 }
 \details{
 If a specified independent variable is not properly encoded as a \code{factor}, it is
@@ -57,18 +58,23 @@ tadaa_aov(stunzahl ~ jahrgang * geschl, data = ngo)
 \dontrun{
 tadaa_aov(stunzahl ~ jahrgang * geschl, data = ngo, type = 1, print = "console")
 tadaa_aov(stunzahl ~ jahrgang * geschl, data = ngo, type = 3, print = "console")
-tadaa_aov(stunzahl ~ jahrgang * geschl, data = ngo,
-          type = 3, check_contrasts = FALSE, print = "console")
+tadaa_aov(stunzahl ~ jahrgang * geschl,
+  data = ngo,
+  type = 3, check_contrasts = FALSE, print = "console"
+)
 }
 }
 \seealso{
-Other Tadaa-functions: \code{\link{tadaa_chisq}},
-  \code{\link{tadaa_kruskal}}, \code{\link{tadaa_levene}},
-  \code{\link{tadaa_nom}}, \code{\link{tadaa_normtest}},
-  \code{\link{tadaa_one_sample}}, \code{\link{tadaa_ord}},
-  \code{\link{tadaa_pairwise_gh}},
-  \code{\link{tadaa_pairwise_tukey}},
-  \code{\link{tadaa_pairwise_t}},
-  \code{\link{tadaa_t.test}}, \code{\link{tadaa_wilcoxon}}
+Other Tadaa-functions: 
+\code{\link{tadaa_chisq}()},
+\code{\link{tadaa_kruskal}()},
+\code{\link{tadaa_levene}()},
+\code{\link{tadaa_nom}()},
+\code{\link{tadaa_one_sample}()},
+\code{\link{tadaa_ord}()},
+\code{\link{tadaa_pairwise_tukey}()},
+\code{\link{tadaa_pairwise_t}()},
+\code{\link{tadaa_t.test}()},
+\code{\link{tadaa_wilcoxon}()}
 }
 \concept{Tadaa-functions}

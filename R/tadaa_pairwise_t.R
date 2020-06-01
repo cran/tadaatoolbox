@@ -24,7 +24,7 @@
 #' @return A `data.frame` with columns `term`, `comparison` and `adj.p.value`.
 #' @export
 #' @family Tadaa-functions
-#' @seealso [tadaa_pairwise_tukey()], [tadaa_pairwise_gh()]
+#' @seealso [tadaa_pairwise_tukey()]
 #' @note The adjustment method is applied within each `term`, meaning that the number of
 #' pairwise t-tests counted for the adjustment is only equal to the number of rows
 #' per `term` of the output.
@@ -40,7 +40,6 @@
 #' tadaa_pairwise_t(ngo, deutsch, jahrgang, geschl, p.adjust = "none", print = "console")
 #' tadaa_pairwise_t(ngo, deutsch, jahrgang, geschl, p.adjust = "bonf", print = "console")
 #' tadaa_pairwise_t(ngo, deutsch, jahrgang, geschl, p.adjust = "sidak", print = "console")
-#'
 tadaa_pairwise_t <- function(data, response, group1, group2 = NULL,
                              p.adjust = "bonf", paired = FALSE, pool.sd = !paired,
                              alternative = "two.sided", print = "df") {
@@ -154,7 +153,7 @@ tadaa_pairwise_t <- function(data, response, group1, group2 = NULL,
   return(pixiedust::sprinkle_print_method(output, print_method = print))
 }
 
-#' Sidak setp-down procedure
+#' Sidak step-down procedure
 #' @references https://github.com/Bioconductor-mirror/multtest/blob/master/R/mt.basic.R#L81-L88
 #' @keywords internal
 sidak_sd <- function(pvals) {
@@ -163,10 +162,10 @@ sidak_sd <- function(pvals) {
   index <- order(pvals)
   pvals_s <- pvals[index]
   tmp <- pvals_s
-  tmp[1] <- 1 - (1 - pvals_s[1]) ^ m.good
+  tmp[1] <- 1 - (1 - pvals_s[1])^m.good
 
   for (i in 2:m) {
-    tmp[i] <- max(tmp[i - 1], 1 - (1 - pvals_s[i]) ^ (m.good - i + 1))
+    tmp[i] <- max(tmp[i - 1], 1 - (1 - pvals_s[i])^(m.good - i + 1))
   }
 
   tmp[order(index)]

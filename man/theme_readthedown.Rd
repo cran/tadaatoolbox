@@ -5,11 +5,21 @@
 \alias{theme_tadaa}
 \title{ggplot2 theme to fit the readthedown Rmd format}
 \usage{
-theme_readthedown(base_size = 12, base_family = "", bg = "#fcfcfc",
-  axis_emph = "xy", ...)
+theme_readthedown(
+  base_size = 12,
+  base_family = "",
+  bg = "#fcfcfc",
+  axis_emph = "xy",
+  ...
+)
 
-theme_tadaa(base_size = 12, base_family = "", bg = "#fcfcfc",
-  axis_emph = "xy", ...)
+theme_tadaa(
+  base_size = 12,
+  base_family = "",
+  bg = "#fcfcfc",
+  axis_emph = "xy",
+  ...
+)
 }
 \arguments{
 \item{base_size}{Base text size, defaults to \code{12}.}
@@ -18,9 +28,9 @@ theme_tadaa(base_size = 12, base_family = "", bg = "#fcfcfc",
 headers, or \code{"Lato"} for the body style.}
 
 \item{bg}{Background color, defaults to \code{rmdformats::readthedown}'s background,
-\code{#fcfcfc}}
+\verb{#fcfcfc}}
 
-\item{axis_emph}{Which axis to emphasize visually (black lines). One of \code{"x", "y", "xy", NULL}.}
+\item{axis_emph}{Which axis to emphasize visually (black lines). One of \verb{"x", "y", "xy", NULL}.}
 
 \item{...}{Other arguments passed to \code{\link[ggplot2:theme]{ggplot2::theme()}}}
 }
@@ -34,10 +44,11 @@ dark grid lines.
 \examples{
 \dontrun{
 library(ggplot2)
-p <- qplot(1:10, 1:10, geom = "point")
+p <- ggplot(ngo, aes(x = stunzahl)) +
+  geom_bar()
 
 p + theme_readthedown()
 p + theme_readthedown(base_family = "Lato")
-p + theme_readthedown(base_family = "Roboto Slab", axis_emph = "x")
+p + theme_readthedown(base_family = "Roboto Condensed", axis_emph = "x")
 }
 }

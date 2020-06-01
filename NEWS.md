@@ -1,3 +1,20 @@
+# tadaatoolbox 0.17.0
+
+- Ensure compatibility with broom 0.7.0 (#32)
+- Remove `tadaa_pairwise_gh`.
+- Update infrastructure using `usethis::use_tidy_ci()`, bumps R dependency to `>= 3.2`.
+- Add `z.test()` to fill the niche in `stats`. Useful to verify hand-made calculations done in educational contexts, as I assume nobody else will ever need a z-test function.
+- Add `tadaa_z.test()` while we're at it.
+
+## Fixing mistakes
+
+- Remove internal Levene-test from `tadaa_t.test()`, defaulting to `var.equal = FALSE` as `stats::t.test()` does. Turns out this was a pretty bad idea due to the multiplicity problem, and the Welch-test is *good enough*.
+- Remove the post-hoc / empirical `power` from 
+  - `tadaa_t.test()`
+  - `tadaa_aov()`
+  - `tadaa_one_sample()`
+- Remove `tadaa_normtest()`. It never should have been a thing in the first place.
+
 # tadaatoolbox 0.16.1
 
 - Add `inv()` for inverting Likert-scales
@@ -34,7 +51,7 @@
 - Fix error in SEM calculation in `tadaa_one_sample` for t-tests
 - Make sure `tadaa_`-test functions use `tadaatoolbox::pval_string` instead of the `pixiedust` version
 - Remove recoded `leist` var from `ngo`, as it should be computed from `leistung` by students.
-- Move `cowplot` from `Imports` to `Suggests` because whe only need it in one function, *sometimes*.
+- Move `cowplot` from `Imports` to `Suggests` because we only need it in one function, *sometimes*.
 - More compact table output in `tadaa_nom` and `tadaa_ord`.
 
 ## Removals
@@ -154,7 +171,7 @@
 ## Patch changes
 
 * New options in `tadaa_int`: 
-    - Set `grid = TRUE` for the two interaction plots to be printen in a grid via
+    - Set `grid = TRUE` for the two interaction plots to be printed in a grid via
 [cowplot::plot_grid](https://CRAN.R-project.org/package=cowplot).  
     - Choose the plot labels via the `labels` argument.
 * `tadaa_int` plot output now also is a little tidier and optimized for smaller widths.

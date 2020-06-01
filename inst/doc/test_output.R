@@ -1,23 +1,23 @@
-## ----setup, include=FALSE------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 library(tadaatoolbox)
 
-## ----descriptives--------------------------------------------------------
+## ----descriptives-------------------------------------------------------------
 tadaa_nom(ngo$geschl, ngo$abschalt, print = "markdown")
 
 tadaa_ord(ngo$urteil, ngo$leistung, print = "markdown")
 
-## ----aov_oneway----------------------------------------------------------
+## ----aov_oneway---------------------------------------------------------------
 tadaa_aov(deutsch ~ jahrgang, data = ngo, type = 1, print = "markdown")
 tadaa_aov(deutsch ~ jahrgang, data = ngo, type = 2, print = "markdown")
 tadaa_aov(deutsch ~ jahrgang, data = ngo, type = 3, print = "markdown")
 
-## ----aov_twoway----------------------------------------------------------
+## ----aov_twoway---------------------------------------------------------------
 tadaa_aov(deutsch ~ jahrgang * geschl, data = ngo, type = 1, print = "markdown")
 tadaa_aov(deutsch ~ jahrgang * geschl, data = ngo, type = 2, print = "markdown")
 tadaa_aov(deutsch ~ jahrgang * geschl, data = ngo, type = 3, print = "markdown")
 
-## ----aov_order-----------------------------------------------------------
+## ----aov_order----------------------------------------------------------------
 set.seed(0)
 data.frame(A = rnorm(100, mean = c(25, 30, 45)),
            G = c(rep("a", 50), rep("b", 50)),
@@ -25,13 +25,13 @@ data.frame(A = rnorm(100, mean = c(25, 30, 45)),
            Z = sample(letters[7:8], size = 100, TRUE)) %>%
   tadaa_aov(data = ., formula = A ~ G * R * Z, type = 3, print = "markdown")
 
-## ----kruskal-------------------------------------------------------------
+## ----kruskal------------------------------------------------------------------
 tadaa_kruskal(stunzahl ~ jahrgang, data = ngo, print = "markdown")
 
-## ----chisq---------------------------------------------------------------
+## ----chisq--------------------------------------------------------------------
 tadaa_chisq(ngo, abschalt, geschl, print = "markdown")
 
-## ----t_test--------------------------------------------------------------
+## ----t_test-------------------------------------------------------------------
 tadaa_t.test(data = ngo, response = deutsch, group = geschl, print = "markdown")
 tadaa_t.test(data = ngo, response = deutsch, group = geschl, paired = TRUE,
              print = "markdown")
@@ -42,7 +42,7 @@ tadaa_t.test(data = ngo, response = deutsch, group = geschl,
 tadaa_t.test(data = ngo, response = deutsch, group = geschl, 
              direction = "greater", print = "markdown")
 
-## ----wilcoxon------------------------------------------------------------
+## ----wilcoxon-----------------------------------------------------------------
 tadaa_wilcoxon(ngo, deutsch, geschl, print = "markdown")
 tadaa_wilcoxon(ngo, deutsch, geschl, 
                direction = "less", print = "markdown")
@@ -52,7 +52,7 @@ tadaa_wilcoxon(ngo, deutsch, geschl, paired = TRUE,
                direction = "less", print = "markdown")
 
 
-## ----one_sample_z--------------------------------------------------------
+## ----one_sample_z-------------------------------------------------------------
 # z: known sigma
 tadaa_one_sample(data = ngo, x = deutsch, mu = 7.5, sigma = 2, print = "markdown")
 tadaa_one_sample(data = ngo, x = deutsch, mu = 8, sigma = 2, 
@@ -60,14 +60,14 @@ tadaa_one_sample(data = ngo, x = deutsch, mu = 8, sigma = 2,
 tadaa_one_sample(data = ngo, x = deutsch, mu = 7, sigma = 2, 
                  direction = "greater", print = "markdown")
 
-## ----one_sample_t--------------------------------------------------------
+## ----one_sample_t-------------------------------------------------------------
 tadaa_one_sample(data = ngo, x = deutsch, mu = 7.5, print = "markdown")
 tadaa_one_sample(data = ngo, x = deutsch, mu = 8, 
                  direction = "less", print = "markdown")
 tadaa_one_sample(data = ngo, x = deutsch, mu = 7, 
                  direction = "greater", print = "markdown")
 
-## ----levene--------------------------------------------------------------
+## ----levene-------------------------------------------------------------------
 tadaa_levene(ngo, deutsch ~ jahrgang, print = "markdown")
 tadaa_levene(ngo, deutsch ~ jahrgang, center = "mean", print = "markdown")
 tadaa_levene(ngo, deutsch ~ jahrgang * geschl, print = "markdown")

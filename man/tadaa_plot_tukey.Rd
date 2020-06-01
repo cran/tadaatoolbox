@@ -21,7 +21,7 @@ This is a simple plotting template that takes the \link[broom:tidy]{broom::tidy}
 of \link{tadaa_pairwise_tukey} and plots it nicely with error bars.
 }
 \note{
-The \code{alpha} of the error bars is set to \code{0.25} if the comparison
+The \code{alpha} of the error bars is set to \code{0.25} if the contrast
 is not significant, and \code{1} otherwise. That's neat.
 }
 \examples{
@@ -29,7 +29,9 @@ tests <- tadaa_pairwise_tukey(data = ngo, deutsch, jahrgang, geschl, print = "df
 tadaa_plot_tukey(tests)
 }
 \seealso{
-Other Tadaa-plot functions: \code{\link{tadaa_balance}},
-  \code{\link{tadaa_int}}, \code{\link{tadaa_mean_ci}}
+Other Tadaa-plot functions: 
+\code{\link{tadaa_balance}()},
+\code{\link{tadaa_int}()},
+\code{\link{tadaa_mean_ci}()}
 }
 \concept{Tadaa-plot functions}

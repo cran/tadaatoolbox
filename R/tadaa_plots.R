@@ -14,7 +14,7 @@
 #' defaults to `c("A", "B")`.
 #' @param show_n If `TRUE`, displays N in plot subtitle.
 #' @param print Default is `TRUE`, set `FALSE` to suppress automatic printing.
-#' Useful if you intend to further modify the outpur plots.
+#' Useful if you intend to further modify the output plots.
 #' @return Invisible: A list with two ggplot2 objects named `p1` and `p2`.
 #' If `print = TRUE`: Printed: The one or two ggplot2 objects, depending on `grid`.
 #' @export
@@ -60,11 +60,11 @@ tadaa_int <- function(data, response, group1, group2, grid = FALSE,
   )) +
     stat_summary(
       aes_string(group = substitute(group2)),
-      fun.y = mean, geom = "line"
+      fun = mean, geom = "line"
     ) +
     stat_summary(
       aes_string(group = substitute(group2)),
-      fun.y = mean, geom = "point", shape = 23, fill = "white"
+      fun = mean, geom = "point", shape = 23, fill = "white"
     ) +
     scale_colour_brewer(palette = brewer_palette) +
     labs(
@@ -79,11 +79,11 @@ tadaa_int <- function(data, response, group1, group2, grid = FALSE,
   )) +
     stat_summary(
       aes_string(group = substitute(group1)),
-      fun.y = mean, geom = "line"
+      fun = mean, geom = "line"
     ) +
     stat_summary(
       aes_string(group = substitute(group1)),
-      fun.y = mean, geom = "point", shape = 23, fill = "white"
+      fun = mean, geom = "point", shape = 23, fill = "white"
     ) +
     scale_colour_brewer(palette = brewer_palette) +
     labs(
@@ -133,7 +133,8 @@ tadaa_balance <- function(data, group1, group2, palette = "D", annotate = TRUE) 
 
   if (annotate) {
     anno <- geom_label(
-      aes_string(label = "Freq"), stat = "identity",
+      aes_string(label = "Freq"),
+      stat = "identity",
       fill = "white", alpha = .5, size = 5
     )
   } else {
@@ -175,8 +176,8 @@ tadaa_mean_ci <- function(data, response, group, brewer_palette = "Set1") {
 
   p <- ggplot(data = data, aes_string(x = x, y = y, color = x)) +
     stat_summary(fun.data = "mean_ci_t", geom = "errorbar", width = 0.6, size = 1.5) +
-    stat_summary(fun.y = "mean", geom = "point", size = 3, color = "black") +
-    stat_summary(fun.y = "mean", geom = "point", size = 2, color = "white") +
+    stat_summary(fun = "mean", geom = "point", size = 3, color = "black") +
+    stat_summary(fun = "mean", geom = "point", size = 2, color = "white") +
     guides(color = FALSE)
   if (!is.null(brewer_palette)) {
     p <- p + scale_color_brewer(palette = brewer_palette)
@@ -197,31 +198,30 @@ tadaa_mean_ci <- function(data, response, group, brewer_palette = "Set1") {
 #' @export
 #' @import ggplot2
 #' @family Tadaa-plot functions
-#' @note The `alpha` of the error bars is set to `0.25` if the comparison
+#' @note The `alpha` of the error bars is set to `0.25` if the contrast
 #' is not significant, and `1` otherwise. That's neat.
 #' @examples
 #' tests <- tadaa_pairwise_tukey(data = ngo, deutsch, jahrgang, geschl, print = "df")
 #' tadaa_plot_tukey(tests)
 tadaa_plot_tukey <- function(data, brewer_palette = "Set1") {
-
-  # Yields weird warnings when pkgdowning, needs more testing
-  # data$term <- gsub(":", " \u2194 ", data$term)
-  # data$comparison <- gsub(":", " & ", data$comparison)
-  # data$comparison <- gsub("-", " \u2194 ", data$comparison)
-
   data$signif <- ifelse(data$conf.high > 0 & data$conf.low < 0, "no", "yes")
 
+  if (utils::hasName(data, "comparison")) {
+    data$contrast <- tukey$comparison
+    data$comparison <- NULL
+  }
+
   data <- data[order(data$term, data$estimate), ]
-  data$comparison <- factor(
-    data$comparison,
-    levels = rev(as.character(data$comparison)),
+  data$contrast <- factor(
+    data$contrast,
+    levels = rev(as.character(data$contrast)),
     ordered = TRUE
   )
 
   p <- ggplot(
     data = data,
     aes_string(
-      x = "comparison",
+      x = "contrast",
       y = "estimate",
       ymin = "conf.low",
       ymax = "conf.high",

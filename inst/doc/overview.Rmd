@@ -33,7 +33,7 @@ The point of these function is to combine routine steps into one function, so le
 
 ## t-Tests: `tadaa_t.test`
 
-On of the first implemented functions, `tadaa_t.test`, automagically checks for homogenity of variance via `car::leveneTest`, and if the resulting p-value is below .1, homogenity of variance is assumed in the following call to `stats::t.test`. Afterwards the effect size $d$ is is calculated with pooled/weighted variances to ensure accuracy, and the power of the test is calculated via the `pwr` package (also keeping in mind whether the test is `paired` or not). It then formats the output according to `broom::tidy`, sprinkles it with `pixiedust` and prints either to console, markdown or whatever printing method is passed via the `print` argument to `pixiedust::sprinkle_print_method`.
+The effect size $d$ is calculated with pooled/weighted variances to ensure accuracy. It then formats the output according to `broom::tidy`, sprinkles it with `pixiedust` and prints either to console, markdown or whatever printing method is passed via the `print` argument to `pixiedust::sprinkle_print_method`.
 
 ```{r t-test}
 tadaa_t.test(ngo, stunzahl, geschl, print = "markdown")
@@ -65,7 +65,7 @@ tadaa_kruskal(stunzahl ~ jahrgang, data = ngo, print = "markdown")
 
 ### Pairwise t-tests
 
-Since we found `stats::pairwise.t.test` insuffucient in cases of two-way ANOVAs, we wrapped the function to also enable the testing of interactions. The adjusted p-values are only adjusted within each term, so it is like performing `stats::pairwise.t.test` 3 times with each factor and additionally the interaction of the two factors (which is what the function does internally).
+Since we found `stats::pairwise.t.test` insufficient in cases of two-way ANOVAs, we wrapped the function to also enable the testing of interactions. The adjusted p-values are only adjusted within each term, so it is like performing `stats::pairwise.t.test` 3 times with each factor and additionally the interaction of the two factors (which is what the function does internally).
 
 As a bonus, this functions knows the two additional p-adjustment methods `sidak` and `sidakSD` for the Sidak adjustement and the Sidak-like step-down procedure respectively.
 
@@ -75,28 +75,6 @@ tadaa_pairwise_t(ngo, response = deutsch, group1 = jahrgang, p.adjust = "bonf", 
 tadaa_pairwise_t(ngo, response = deutsch, group1 = jahrgang, group2 = geschl, p.adjust = "sidakSD", print = "markdown")
 ```
 
-
-## Tests for normality: `tadaa_normtest`
-
-Supported methods:
-    - `ad`: Anderson-Darling
-    - `shapiro`: Shapiro-Wilk
-    - `pearson`: Pearson's chi-square test
-    - `ks`: Kolmogorov-Smirnov
-    
-```{r normtest, eval=FALSE}
-library(dplyr)
-print("test")
-cols <- ngo[c("deutsch", "englisch", "mathe")]
-
-tadaa_normtest(data = cols, method = "shapiro", print = "markdown")
-```
-
-|variable | statistic|   p.value|method                      |
-|:--------|---------:|---------:|:---------------------------|
-|deutsch  | 0.9792137| 0.0010092|Shapiro-Wilk normality test |
-|englisch | 0.9752944| 0.0002421|Shapiro-Wilk normality test |
-|mathe    | 0.9746956| 0.0001962|Shapiro-Wilk normality test |
 
 # Statistics Wrappers
 
@@ -123,7 +101,7 @@ These are pretty self-explanatory. The goal is to provide simple functions for c
 * `generate_recodes`: To produce recode assignments for `car::recode` for evenly sequenced clusters.
 * `interval_labels`: To produce labels for clusters created by `cut`.
 * `delete_na`: Customizable way to drop `NA` observations from a dataset.
-* `pval_string`: Shamalessly adapted from `pixiedust::pvalString`, this will format a p-value as a character string in common `p < 0.001` notation and so on. The difference from the `pixiedust` version is that this function will also print `p < 0.05`.
+* `pval_string`: Shamelessly adapted from `pixiedust::pvalString`, this will format a p-value as a character string in common `p < 0.001` notation and so on. The difference from the `pixiedust` version is that this function will also print `p < 0.05`.
 
 ## Plotting helpers
 

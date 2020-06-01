@@ -1,52 +1,45 @@
-## ----setup, include=FALSE------------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------
 library(tadaatoolbox)
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 
-## ----highlevel_intro, results='asis', echo=F-----------------------------
+## ----highlevel_intro, results='asis', echo=F----------------------------------
 cat(paste0("- **", apropos("tadaa_"), "**", collapse = "\n"))
 
-## ----t-test--------------------------------------------------------------
+## ----t-test-------------------------------------------------------------------
 tadaa_t.test(ngo, stunzahl, geschl, print = "markdown")
 
-## ----wilcox--------------------------------------------------------------
+## ----wilcox-------------------------------------------------------------------
 tadaa_wilcoxon(ngo, stunzahl, geschl, print = "markdown")
 
-## ----anova---------------------------------------------------------------
+## ----anova--------------------------------------------------------------------
 tadaa_aov(stunzahl ~ jahrgang * geschl, data = ngo, print = "markdown")
 
-## ----kruskal-------------------------------------------------------------
+## ----kruskal------------------------------------------------------------------
 tadaa_kruskal(stunzahl ~ jahrgang, data = ngo, print = "markdown")
 
-## ----pairw_t-------------------------------------------------------------
+## ----pairw_t------------------------------------------------------------------
 tadaa_pairwise_t(ngo, response = deutsch, group1 = jahrgang, p.adjust = "bonf", print = "markdown")
 
 tadaa_pairwise_t(ngo, response = deutsch, group1 = jahrgang, group2 = geschl, p.adjust = "sidakSD", print = "markdown")
 
-## ----normtest, eval=FALSE------------------------------------------------
-#  library(dplyr)
-#  print("test")
-#  cols <- ngo[c("deutsch", "englisch", "mathe")]
-#  
-#  tadaa_normtest(data = cols, method = "shapiro", print = "markdown")
-
-## ----confint-------------------------------------------------------------
+## ----confint------------------------------------------------------------------
 library(ggplot2)
 
 ggplot(data = ngo, aes(x = jahrgang, y = deutsch)) +
   stat_summary(fun.data = "mean_ci_t", geom = "errorbar") +
   theme_tadaa()
 
-## ----mean_ci_plot--------------------------------------------------------
+## ----mean_ci_plot-------------------------------------------------------------
 tadaa_mean_ci(data = ngo, response = deutsch, group = jahrgang) +
   theme_tadaa()
 
-## ----tadaa_int, fig.width=6----------------------------------------------
+## ----tadaa_int, fig.width=6---------------------------------------------------
 library(ggplot2)
 if (!("cowplot" %in% installed.packages())) install.packages("cowplot")
 
 tadaa_int(data = ngo, response = stunzahl, group1 = jahrgang, group2 = geschl, grid = T, brewer_palette = "Set1")
 
-## ----data_ngo, eval=FALSE------------------------------------------------
+## ----data_ngo, eval=FALSE-----------------------------------------------------
 #  ngo <- ryouready::d.ngo
 #  
 #  ## sjPlot value labels
